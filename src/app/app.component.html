@@ -5,6 +5,6 @@
 
 <ul *ngFor="let item of items | async">
   <li class="text">
-    {{item.$value}}
+    {{item.$key}} : {{item.$value}}
   </li>
 </ul>
