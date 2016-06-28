@@ -16,8 +16,11 @@ module.exports = function(defaults) {
       'reflect-metadata/**/*.+(ts|js|js.map)',
       'rxjs/**/*.+(js|js.map)',
       '@angular/**/*.+(js|js.map)',
-	  'angularfire2/**/*.js',
-      'firebase/*.js' 
+	    'angularfire2/**/*.js',
+      'firebase/*.js',
+      'bootstrap/dist/js/bootstrap.min.js',
+      'bootswatch/*',
+      'fontawesome/*'
     ]
   });
 };

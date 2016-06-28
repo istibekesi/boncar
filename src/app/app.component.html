@@ -1,10 +1,30 @@
-<h1>
-  {{title}}
-</h1>
+<boncar-header>Loading header...</boncar-header>
+
+  <div class="container">
+
+    <div class="page-header" id="banner"></div>
+
+    <h2> My First Angular 2 App</h2>
+    <h1>
+      {{title}}
+    </h1>
+
+    <ul *ngFor="let item of items | async">
+      <li class="text">
+        {{item.$key}} : {{item.$value}}
+      </li>
+    </ul>
+
+    <div>
+      <boncar-car>Loading car...</boncar-car>
+    </div>
+
+  </div>
+
+<boncar-footer>Loading footer...</boncar-footer>
 
 
-<ul *ngFor="let item of items | async">
-  <li class="text">
-    {{item.$key}} : {{item.$value}}
-  </li>
-</ul>
+
+
+
+
