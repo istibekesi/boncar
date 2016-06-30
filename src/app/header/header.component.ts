@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {AngularFire} from "angularfire2";
+
 
 @Component({
   moduleId: module.id,
@@ -8,9 +10,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor() {}
+  constructor(public af: AngularFire) {}
 
   ngOnInit() {
+  }
+
+  login() {
+    this.af.auth.login();
+  }
+
+  logout() {
+    this.af.auth.logout();
   }
 
 }

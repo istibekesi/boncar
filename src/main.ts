@@ -1,7 +1,7 @@
 import { bootstrap } from '@angular/platform-browser-dynamic';
 import { enableProdMode } from '@angular/core';
 import { AppComponent, environment } from './app/';
-import { FIREBASE_PROVIDERS, defaultFirebase } from 'angularfire2';
+import {FIREBASE_PROVIDERS, defaultFirebase, firebaseAuthConfig, AuthProviders, AuthMethods} from 'angularfire2';
 
 if (environment.production) {
   enableProdMode();
@@ -15,6 +15,11 @@ bootstrap(AppComponent, [
     authDomain: "project-8652230604760829170.firebaseapp.com",
     databaseURL: "https://project-8652230604760829170.firebaseio.com",
     storageBucket: "project-8652230604760829170.appspot.com",
+  }),
+  // Auth Config
+  firebaseAuthConfig({
+    provider: AuthProviders.Anonymous,
+    method: AuthMethods.Anonymous
   })
 ]);
 

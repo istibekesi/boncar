@@ -11,10 +11,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
 
-
-
-
-
   <!-- Latest compiled and minified CSS -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
   <!-- Flatly bootswatch theme  -->
@@ -27,12 +23,21 @@
 <body>
 
 
-    <app-root>Loading...</app-root>
+    <app-root>
+
+
+      <div class="contianer" style="margin-top:50px;margin-right:auto;margin-bottom:0px;margin-left:auto;text-align:center;">
+        <h2>Loading...</h2>
+        <i class="fa fa-spinner fa-spin fa-4x fa-fw"></i>
+        <span class="sr-only">Loading...</span>
+      </div>
+
+    </app-root>
 
 
 
     {{#each scripts.polyfills}}
-    <script src="{{.}}"></script>
+      <script src="{{.}}"></script>
     {{/each}}
     <script>
       System.import('system-config.js').then(function () {

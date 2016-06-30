@@ -23,8 +23,34 @@
           </ul>
         </li>
       </ul>
+
+
+
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="#">Link</a></li>
+
+
+        <li *ngIf="!af.auth.getAuth()" class="dropdown">
+          <!-- Not logged in! -->
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Login<span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <li><a href="/#"><i class="fa fa-envelope pull-right" aria-hidden="true"></i>&nbsp;Email</a></li>
+            <li><a href="/#"><i class="fa fa-facebook pull-right" aria-hidden="true"></i>&nbsp;Facebook</a></li>
+            <li><a (click)="login()" href="/#"><i class="fa fa-user pull-right" aria-hidden="true"></i>&nbsp;Anonymous</a></li>
+          </ul>
+        </li>
+
+        <li *ngIf="af.auth.getAuth() && af.auth.getAuth().anonymous" class="dropdown">
+          <!-- Anonymous user logged in-->
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+            <i class="fa fa-user"></i>
+          </a>
+          <ul class="dropdown-menu" role="menu">
+            <li><a href="/#" (click)="logout()">Logout</a></li>
+          </ul>
+        </li>
+
+
+
       </ul>
     </div>
 

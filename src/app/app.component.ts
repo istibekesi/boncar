@@ -12,14 +12,13 @@ import {CarService} from "./car/car.service";
   templateUrl: 'app.component.html',
   styleUrls: ['app.component.css'],
   directives: [HeaderComponent, FooterComponent, CarComponent],
-  providers : [CarService]
+  providers : [CarService, AngularFire]
 })
 export class AppComponent {
   title = 'Hello World!';
-
   items: FirebaseListObservable<any[]>;
 
-  constructor(af: AngularFire) {
+  constructor(public af: AngularFire) {
     this.items = af.database.list('fire/hun');
   }
 
