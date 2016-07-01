@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {AngularFire} from "angularfire2";
+import {AngularFire, AuthProviders, AuthMethods} from "angularfire2";
 
 
 @Component({
@@ -15,11 +15,26 @@ export class HeaderComponent implements OnInit {
   ngOnInit() {
   }
 
-  login() {
+  loginAnonymous() {
+    console.log("Logging in by Anonymous user...");
     this.af.auth.login();
   }
 
-  logout() {
+  logoutAnonymous() {
+    console.log("Log out Anonymous user...");
+    this.af.auth.logout();
+  }
+
+  loginFacebook() {
+    console.log("Logging in Facebook user...");
+    this.af.auth.login({
+      provider: AuthProviders.Facebook,
+      method: AuthMethods.Popup,
+    });
+  }
+
+  logoutFacebook() {
+    console.log("Log out Facebook user...");
     this.af.auth.logout();
   }
 
