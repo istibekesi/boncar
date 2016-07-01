@@ -33,9 +33,9 @@
           <!-- Not logged in! -->
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Login<span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
-            <li><a href="/boncar/#"><i class="fa fa-envelope fa-fw" aria-hidden="true"></i>&nbsp;Email</a></li>
-            <li><a href="/boncar/#"><i class="fa fa-facebook fa-fw" aria-hidden="true"></i>&nbsp;Facebook</a></li>
-            <li><a (click)="login()" href="/boncar/#"><i class="fa fa-user fa-fw" aria-hidden="true"></i>&nbsp;Anonymous</a></li>
+            <li><a href="/#"><i class="fa fa-envelope fa-fw" aria-hidden="true"></i>&nbsp;Email</a></li>
+            <li><a (click)="loginFacebook()" href="/#"><i class="fa fa-facebook fa-fw" aria-hidden="true"></i>&nbsp;Facebook</a></li>
+            <li><a (click)="loginAnonymous()" href="/#"><i class="fa fa-user fa-fw" aria-hidden="true"></i>&nbsp;Anonymous</a></li>
           </ul>
         </li>
 
@@ -45,7 +45,17 @@
             <i class="fa fa-user"></i>
           </a>
           <ul class="dropdown-menu" role="menu">
-            <li><a href="/#" (click)="logout()">Logout</a></li>
+            <li><a href="/#" (click)="logoutAnonymous()">Logout</a></li>
+          </ul>
+        </li>
+
+        <li *ngIf="af.auth.getAuth() && af.auth.getAuth().provider == 2" class="dropdown">
+          <!-- Anonymous user logged in-->
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+            <i class="fa fa-facebook"></i>
+          </a>
+          <ul class="dropdown-menu" role="menu">
+            <li><a href="/#" (click)="logoutFacebook()">Logout</a></li>
           </ul>
         </li>
 
