@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {AngularFire, AuthProviders, AuthMethods} from "angularfire2";
+import {AngularFire, AuthProviders, AuthMethods, FirebaseAuthState} from "angularfire2";
 
 
 @Component({
@@ -9,15 +9,30 @@ import {AngularFire, AuthProviders, AuthMethods} from "angularfire2";
   styleUrls: ['header.component.css']
 })
 export class HeaderComponent implements OnInit {
+  currentUserAuth : FirebaseAuthState;
 
-  constructor(public af: AngularFire) {}
+
+  constructor(public af: AngularFire) {
+    this.af.auth.subscribe(auth => {
+      if (auth) {
+        console.log('Authentication success!');
+      } else {
+        console.log('Logged out! (auth = null)');
+      }
+      this.currentUserAuth = auth;
+    });
+  }
 
   ngOnInit() {
   }
 
   loginAnonymous() {
     console.log("Logging in by Anonymous user...");
-    this.af.auth.login();
+    this.af.auth.login().then(
+      success => console.log('Anonymous login success: ' + success)
+    ).catch(
+      err => console.log('Anonymous login FAILED: ' + err)
+    );
   }
 
   logoutAnonymous() {
@@ -30,7 +45,11 @@ export class HeaderComponent implements OnInit {
     this.af.auth.login({
       provider: AuthProviders.Facebook,
       method: AuthMethods.Popup,
-    });
+    }).then(
+      success => console.log('Facbook login success: ' + success)
+    ).catch(
+      err => console.log('Facbook login FAILED: ' + err)
+    );
   }
 
   logoutFacebook() {
