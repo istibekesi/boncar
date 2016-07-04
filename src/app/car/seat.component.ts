@@ -43,7 +43,7 @@ export class SeatComponent implements OnInit {
   constructor(private carService:CarService) {
     let avatar = this.carService.getRandomInstaAvatar();
     this.index = avatar.id;
-    this.avatarSrc = avatar.src;
+    this.avatarSrc = '/img/'+avatar.src;
   }
 
   ngOnInit() {

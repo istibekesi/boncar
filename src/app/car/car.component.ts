@@ -5,6 +5,7 @@ import {SeatComponent} from './seat.component';
   selector: 'boncar-car',
   providers: [],
   template: `
+    <div>
     <div class="well clearfix">
       
       <div class="btn-group">
@@ -38,6 +39,7 @@ import {SeatComponent} from './seat.component';
         </svg>
 
     </div>
+  </div>
   </div>
   `,
   styles : [`

@@ -1,12 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import {AngularFire, AuthProviders, AuthMethods, FirebaseAuthState} from "angularfire2";
+import { AngularFire, AuthProviders, AuthMethods, FirebaseAuthState } from "angularfire2";
+import { ROUTER_DIRECTIVES } from "@angular/router";
 
 
 @Component({
   moduleId: module.id,
   selector: 'boncar-header',
   templateUrl: 'header.component.html',
-  styleUrls: ['header.component.css']
+  styleUrls: ['header.component.css'],
+  directives: [ ROUTER_DIRECTIVES ]
 })
 export class HeaderComponent implements OnInit {
   currentUserAuth : FirebaseAuthState;
