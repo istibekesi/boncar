@@ -6,7 +6,7 @@
 
 
     <!-- TEMPLATE DRIVEN -->
-    <form (ngSubmit)="onLoginFormSubmit(f)" #f="ngForm" class="form-horizontal">
+    <form #f="ngForm" class="form-horizontal">
       <fieldset>
 
         <!-- <legend>Legend</legend> -->
@@ -25,7 +25,7 @@
 
         <div class="form-group">
           <div class="col-lg-9 col-lg-offset-2">
-            <button type="submit" class="btn btn-success" [disabled]="!f.valid">Log In</button>
+            <button (click)="onLoginFormSubmit(f)" class="btn btn-success" [disabled]="!f.valid">Log In</button>
             <a class="btn btn-link pull-right">Don't have an account yet?</a>
           </div>
         </div>
