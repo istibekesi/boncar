@@ -3,6 +3,8 @@ import { enableProdMode } from '@angular/core';
 import { AppComponent, environment } from './app/';
 import { FIREBASE_PROVIDERS, defaultFirebase, firebaseAuthConfig, AuthProviders, AuthMethods } from 'angularfire2';
 import { BONCAR_ROUTER_PROVIDERS } from './app/app.routes';
+import { provide } from '@angular/core';
+import { APP_BASE_HREF} from '@angular/common';
 
 
 if (environment.production) {
@@ -11,7 +13,9 @@ if (environment.production) {
 
 bootstrap(AppComponent, [
   FIREBASE_PROVIDERS,
+
   BONCAR_ROUTER_PROVIDERS,
+  {provide: APP_BASE_HREF, useValue: '/'},
   // Initialize Firebase app
   defaultFirebase({
     apiKey: "AIzaSyC2SF0T6cJUym7zbIlUfo2kq6kDMXgjrRc",

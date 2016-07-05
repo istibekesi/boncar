@@ -28,35 +28,41 @@
 
       <ul class="nav navbar-nav navbar-right">
 
+        <!-- Not logged in! -->
         <li *ngIf="!currentUserAuth" class="dropdown">
-          <!-- Not logged in! -->
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Login<span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
-            <li><a role="button"><i class="fa fa-envelope fa-fw" aria-hidden="true"></i>&nbsp;Email</a></li>
+            <li><a [routerLink]="['/login']" ><i class="fa fa-envelope fa-fw" aria-hidden="true"></i>&nbsp;Email</a></li>
             <li><a role="button" (click)="loginFacebook()"><i class="fa fa-facebook fa-fw" aria-hidden="true"></i>&nbsp;Facebook</a></li>
-            <li><a role="button" (click)="loginAnonymous()"><i class="fa fa-user fa-fw" aria-hidden="true"></i>&nbsp;Anonymous</a></li>
+            <li><a role="button" (click)="loginAnonymous()"><i class="fa fa-user-secret fa-fw" aria-hidden="true"></i>&nbsp;Anonymous</a></li>
           </ul>
         </li>
 
+        <!-- Anonymous user logged in-->
         <li *ngIf="currentUserAuth && currentUserAuth.anonymous" class="dropdown">
-          <!-- Anonymous user logged in-->
           <a role="button" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-            <i class="fa fa-user"></i>
+            <i class="fa fa-user-secret"></i>
           </a>
           <ul class="dropdown-menu" role="menu">
-            <li><a role="button" (click)="logoutAnonymous()">Logout</a></li>
+            <li><a [routerLink]="['/user/', currentUserAuth.uid]"><i class="fa fa-user fa-fw" aria-hidden="true"></i>&nbsp;Profile</a></li>
+            <li class="divider"></li>
+            <li><a role="button" (click)="logoutAnonymous()"><i class="fa fa-sign-out fa-fw" aria-hidden="true"></i>&nbsp;Logout</a></li>
           </ul>
         </li>
 
+        <!-- Facebook user logged in-->
         <li *ngIf="currentUserAuth && currentUserAuth.provider == 2" class="dropdown">
-          <!-- Anonymous user logged in-->
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
             <i class="fa fa-facebook"></i>
           </a>
           <ul class="dropdown-menu" role="menu">
-            <li><a role="button" (click)="logoutFacebook()">Logout</a></li>
+            <li><a [routerLink]="['/user']"><i class="fa fa-user fa-fw" aria-hidden="true"></i>&nbsp;Profile</a></li>
+            <li class="divider"></li>
+            <li><a role="button" (click)="logoutFacebook()"><i class="fa fa-sign-out fa-fw" aria-hidden="true"></i>&nbsp;Profile</a></li>
           </ul>
         </li>
+
+
 
       </ul>
     </div>
