@@ -59,4 +59,9 @@ export class HeaderComponent implements OnInit {
     this.af.auth.logout();
   }
 
+  logoutEmail() {
+    console.log("Log out Email user...");
+    this.af.auth.logout();
+  }
+
 }

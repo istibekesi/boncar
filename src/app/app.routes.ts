@@ -9,7 +9,8 @@ export const routes: RouterConfig = [
   { path: '', component: WelcomeComponent},
   { path: 'car', component: CarComponent },
   { path: 'login', component: LoginComponent },
-  { path: 'signup', component: SingupComponent },
+  { path: 'singup', component: SingupComponent },
+  { path: 'user', component: UserProfileComponent },
   { path: 'user/:id', component: UserProfileComponent }
 ];
 
