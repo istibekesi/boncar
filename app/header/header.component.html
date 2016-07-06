@@ -7,7 +7,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="#">BonCar</a>
+      <a class="navbar-brand" [routerLink]="['/']">BonCar</a>
     </div>
 
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -17,9 +17,9 @@
           <ul class="dropdown-menu" role="menu">
             <li><a href="https://github.com/istibekesi/boncar"><i class="fa fa-github fa-fw" aria-hidden="true"></i>&nbsp;Project on GitHub</a></li>
             <li class="divider"></li>
-            <li><a href="/menu1">Menu1</a></li>
-            <li><a href="/menu2">Menu2</a></li>
-            <li><a href="/menu3">Menu3</a></li>
+
+            <li><a [routerLink]="['/car']"><i class="fa fa-car fa-fw" aria-hidden="true"></i>&nbsp;Car</a></li>
+
           </ul>
         </li>
       </ul>
@@ -28,34 +28,50 @@
 
       <ul class="nav navbar-nav navbar-right">
 
-
-        <li *ngIf="!af.auth.getAuth()" class="dropdown">
-          <!-- Not logged in! -->
+        <!-- Not logged in! -->
+        <li *ngIf="!currentUserAuth" class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Login<span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
-            <li><a href="/#"><i class="fa fa-envelope fa-fw" aria-hidden="true"></i>&nbsp;Email</a></li>
-            <li><a (click)="loginFacebook()" href="/#"><i class="fa fa-facebook fa-fw" aria-hidden="true"></i>&nbsp;Facebook</a></li>
-            <li><a (click)="loginAnonymous()" href="/#"><i class="fa fa-user fa-fw" aria-hidden="true"></i>&nbsp;Anonymous</a></li>
+            <li><a [routerLink]="['/login']" ><i class="fa fa-envelope fa-fw" aria-hidden="true"></i>&nbsp;Email</a></li>
+            <li><a role="button" (click)="loginFacebook()"><i class="fa fa-facebook fa-fw" aria-hidden="true"></i>&nbsp;Facebook</a></li>
+            <li><a role="button" (click)="loginAnonymous()"><i class="fa fa-user-secret fa-fw" aria-hidden="true"></i>&nbsp;Anonymous</a></li>
           </ul>
         </li>
 
-        <li *ngIf="af.auth.getAuth() && af.auth.getAuth().anonymous" class="dropdown">
-          <!-- Anonymous user logged in-->
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-            <i class="fa fa-user"></i>
+        <!-- Anonymous user logged in-->
+        <li *ngIf="currentUserAuth && currentUserAuth.anonymous" class="dropdown">
+          <a role="button" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+            <i class="fa fa-user-secret"></i>
           </a>
           <ul class="dropdown-menu" role="menu">
-            <li><a href="/#" (click)="logoutAnonymous()">Logout</a></li>
+            <li><a [routerLink]="['/user', currentUserAuth.uid]"><i class="fa fa-user fa-fw" aria-hidden="true"></i>&nbsp;Profile</a></li>
+            <li class="divider"></li>
+            <li><a role="button" (click)="logoutAnonymous()"><i class="fa fa-sign-out fa-fw" aria-hidden="true"></i>&nbsp;Logout</a></li>
           </ul>
         </li>
 
-        <li *ngIf="af.auth.getAuth() && af.auth.getAuth().provider == 2" class="dropdown">
-          <!-- Anonymous user logged in-->
+        <!-- Facebook user logged in-->
+        <li *ngIf="currentUserAuth && currentUserAuth.provider == 2" class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
             <i class="fa fa-facebook"></i>
           </a>
           <ul class="dropdown-menu" role="menu">
-            <li><a href="/#" (click)="logoutFacebook()">Logout</a></li>
+            <li><a [routerLink]="['/user']"><i class="fa fa-user fa-fw" aria-hidden="true"></i>&nbsp;Profile</a></li>
+            <li class="divider"></li>
+            <li><a role="button" (click)="logoutFacebook()"><i class="fa fa-sign-out fa-fw" aria-hidden="true"></i>&nbsp;Logout</a></li>
+          </ul>
+        </li>
+
+
+        <!-- Email user logged in-->
+        <li *ngIf="currentUserAuth && currentUserAuth.provider == 4" class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+            <i class="fa fa-envelope"></i>
+          </a>
+          <ul class="dropdown-menu" role="menu">
+            <li><a [routerLink]="['/user']"><i class="fa fa-user fa-fw" aria-hidden="true"></i>&nbsp;Profile</a></li>
+            <li class="divider"></li>
+            <li><a role="button" (click)="logoutEmail()"><i class="fa fa-sign-out fa-fw" aria-hidden="true"></i>&nbsp;Logout</a></li>
           </ul>
         </li>
 

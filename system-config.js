@@ -38,6 +38,10 @@ var barrels = [
     'app/header',
     'app/footer',
     'app/car',
+    'app/welcome',
+    'app/login',
+    'app/user-profile',
+    'app/login/singup',
 ];
 var cliSystemConfigPackages = {};
 barrels.forEach(function (barrelName) {
