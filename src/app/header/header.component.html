@@ -33,7 +33,7 @@
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Login<span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
             <li><a [routerLink]="['/login']" ><i class="fa fa-envelope fa-fw" aria-hidden="true"></i>&nbsp;Email</a></li>
-            <li><a role="button" (click)="loginFacebook()"><i class="fa fa-facebook fa-fw" aria-hidden="true"></i>&nbsp;Facebook</a></li>
+            <li><a role="button" (click)="loginFacebook()"><i class="fa fa-facebook-official fa-fw" aria-hidden="true"></i>&nbsp;Facebook</a></li>
             <li><a role="button" (click)="loginAnonymous()"><i class="fa fa-user-secret fa-fw" aria-hidden="true"></i>&nbsp;Anonymous</a></li>
           </ul>
         </li>
@@ -53,7 +53,7 @@
         <!-- Facebook user logged in-->
         <li *ngIf="currentUserAuth && currentUserAuth.provider == 2" class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-            <i class="fa fa-facebook"></i>
+            <i class="fa fa-facebook-official"></i>
           </a>
           <ul class="dropdown-menu" role="menu">
             <li><a [routerLink]="['/user']"><i class="fa fa-user fa-fw" aria-hidden="true"></i>&nbsp;Profile</a></li>

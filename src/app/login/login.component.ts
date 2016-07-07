@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ROUTER_DIRECTIVES } from "@angular/router";
+import { ROUTER_DIRECTIVES, Router } from "@angular/router";
 import { AngularFire, AuthProviders, AuthMethods, FirebaseAuthState } from "angularfire2";
 import { EmailPasswordCredentials } from "angularfire2/es6/providers/auth_backend";
 
@@ -12,10 +12,24 @@ import { EmailPasswordCredentials } from "angularfire2/es6/providers/auth_backen
 })
 export class LoginComponent implements OnInit {
 
-  constructor(public af: AngularFire) {
+  constructor(public af: AngularFire, private router: Router) {
+    this.af.auth.subscribe(auth => {
+      if (auth) {
+        console.log('Authentication success, lest nevigate to /user profile page...');
+        this.router.navigate(['/user']);
+      } else {
+        console.log('Logged out! (auth = null)');
+      }
+    });
   }
 
   ngOnInit() {
+  }
+
+
+  testR() {
+    console.log('Go');
+    this.router.navigate(['/user']);
   }
 
   onLoginForm(formObject) {

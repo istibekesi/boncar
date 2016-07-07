@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {FirebaseAuthState, AngularFire} from "angularfire2";
 
 @Component({
   moduleId: module.id,
@@ -8,7 +9,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UserProfileComponent implements OnInit {
 
-  constructor() {}
+  currentUserAuth : FirebaseAuthState;
+
+  constructor(public af: AngularFire) {
+    this.af.auth.subscribe(auth => {
+      console.log('Authentication changed!');
+      this.currentUserAuth = auth;
+    });
+  }
 
   ngOnInit() {
   }
