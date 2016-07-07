@@ -15,7 +15,7 @@ bootstrap(AppComponent, [
   FIREBASE_PROVIDERS,
 
   BONCAR_ROUTER_PROVIDERS,
-  {provide: APP_BASE_HREF, useValue: '/'},
+  {provide: APP_BASE_HREF, useValue: '/boncar'},
   // Initialize Firebase app
   defaultFirebase({
     apiKey: "AIzaSyC2SF0T6cJUym7zbIlUfo2kq6kDMXgjrRc",
