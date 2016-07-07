@@ -1,3 +1,49 @@
-<p>
-  user-profile works!
-</p>
+
+<div class="row" style="padding-top:40px">
+</div>
+
+<div class="row">
+
+  <div class="col-sm-4">
+
+    <!-- FACEBOOK -->
+    <div *ngIf="currentUserAuth?.provider == 2 ">
+      <img [src]="currentUserAuth?.auth?.photoURL" class="img-responsive center-block img-circle" alt="Profile">
+    </div>
+
+    <!-- EMAIL -->
+    <div *ngIf="currentUserAuth?.provider == 4 " class="text-center">
+      <h2>
+        <i class="fa fa-user fa-5x" aria-hidden="true"></i>
+      </h2>
+    </div>
+
+    <!-- ANONYMOUS -->
+    <div *ngIf="currentUserAuth?.provider == 5 " class="text-center">
+      <h2>
+        <i class="fa fa-user-secret fa-5x" aria-hidden="true"></i>
+      </h2>
+    </div>
+
+
+  </div>
+
+  <div class="col-sm-8">
+
+    <div [ngSwitch]="currentUserAuth?.provider">
+      <div *ngSwitchCase="2">
+        <h2>{{currentUserAuth?.auth?.displayName}}</h2>
+      </div>
+      <div *ngSwitchCase="4">
+        <h2>User Profile</h2>
+        <i class="fa fa-envelope fa-fw"></i>&nbsp; {{currentUserAuth?.auth?.email}}
+      </div>
+      <div *ngSwitchCase="5">
+        <h2>Anonymous User</h2>
+      </div>
+    </div>
+  </div>
+    <!--<p>*{{currentUserAuth?.uid}}*</p> -->
+
+</div>
+

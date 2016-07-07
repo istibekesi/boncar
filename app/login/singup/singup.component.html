@@ -1,2 +1,50 @@
-<div> signup </div>
+<div class="panel panel-primary">
+  <div class="panel-heading">
+    <h3 class="panel-title">Sign Up</h3>
+  </div>
+  <div class="panel-body">
+
+
+    <!-- TEMPLATE DRIVEN -->
+    <form #f="ngForm" class="form-horizontal">
+      <fieldset>
+
+        <!-- <legend>Legend</legend> -->
+        <div class="form-group" [class.has-success]="email.valid">
+          <label for="inputEmail" class="col-lg-2 control-label">Email</label>
+          <div class="col-lg-9">
+            <input ngControl="email" #email="ngForm" class="form-control" id="inputEmail" placeholder="Email" type="text" required pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$">
+          </div>
+        </div>
+
+        <div class="form-group" [class.has-success]="password.valid">
+          <label for="inputPassword" class="col-lg-2 control-label">Password</label>
+          <div class="col-lg-9">
+            <input ngControl="password" #password="ngForm" class="form-control" id="inputPassword" placeholder="Password" type="password" required minlength="6">
+          </div>
+        </div>
+
+        <div class="form-group" [class.has-success]="passwordConfirm.valid">
+          <label for="passwordConfirm" class="col-lg-2 control-label">Confirm Password</label>
+          <div class="col-lg-9">
+            <input ngControl="passwordConfirm" #passwordConfirm="ngForm" class="form-control" id="passwordConfirm" placeholder="Confirm Password" type="password" required minlength="6">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="col-lg-9 col-lg-offset-2">
+            <button (click)="onSignForm(f)" class="btn btn-success" [disabled]="!f.valid">Log In</button>
+            *{{ password.value == passwordConfirm.value}}****{{ password.value }}***{{ passwordConfirm.value }}
+            <!-- <button (click)="testR()" class="btn btn-success">Route</button>-->
+            <a [routerLink]="['/login']" class="btn btn-link pull-right">Have an account already?</a>
+          </div>
+        </div>
+
+      </fieldset>
+    </form>
+
+  </div>
+</div>
+
+
 
