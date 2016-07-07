@@ -23,9 +23,9 @@ export class CarService {
   ];
 
   getRandomInstaAvatar() : any {
-    let rand = Math.floor((Math.random() * this.instaArray.length) );
+    let rand = Math.floor((Math.random() * this.onlineInstaArray.length) );
     console.log('Random ****' + rand);
-    return this.instaArray[rand];
+    return this.onlineInstaArray[rand];
   }
 
 }

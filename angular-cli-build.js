@@ -20,7 +20,8 @@ module.exports = function(defaults) {
       'firebase/*.js',
       'bootstrap/dist/js/bootstrap.min.js',
       'bootswatch/*',
-      'fontawesome/*'
+      'fontawesome/*',
+      'ng2-datetime/**/*.+(js|js.map)'
     ]
   });
 };
