@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFire }  from 'angularfire2';
 import { Ride } from '../ride/model/ride';
+import { ROUTER_DIRECTIVES, Router } from "@angular/router";
 
 @Component({
   moduleId: module.id,
@@ -13,7 +14,7 @@ export class WelcomeComponent implements OnInit {
 
   selectedDay : Date;
 
-  constructor(public af: AngularFire) {
+  constructor(public af: AngularFire, private router: Router) {
     //this.items = af.database.list('fire/hun');
   }
 
@@ -21,9 +22,13 @@ export class WelcomeComponent implements OnInit {
   }
 
 
+  goDate() {
+    this.router.navigate(['/rides', this.selectedDay]);
+  }
 
-
-
+    /**
+     * Pushes a test ride object for the selected day
+     */
   testAddRide() {
     let ride = new Ride(
       "driver",
@@ -31,8 +36,9 @@ export class WelcomeComponent implements OnInit {
       [[1, "utas1"],[2, "utas2"]],
       [[1, "utas1", "Hello"],[2, "utas2", "Bello"]]
     );
-    let listRides = this.af.database.list('rides');
-    listRides.update( this.selectedDay, ride);
+    let listRides = this.af.database.list('rides/'+this.selectedDay);
+    listRides.push(ride);
+
   }
 
 }
