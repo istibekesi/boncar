@@ -15,10 +15,11 @@
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Menu <span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
-            <li><a href="https://github.com/istibekesi/boncar"><i class="fa fa-github fa-fw" aria-hidden="true"></i>&nbsp;Project on GitHub</a></li>
+            <li><a [routerLink]="['/']"><i class="fa fa-home fa-fw" aria-hidden="true"></i>&nbsp;Home</a></li>
+            <li><a [routerLink]="['/car']"><i class="fa fa-car fa-fw" aria-hidden="true"></i>&nbsp;Car - work in progress</a></li>
             <li class="divider"></li>
+            <li><a href="https://github.com/istibekesi/boncar"><i class="fa fa-github fa-fw" aria-hidden="true"></i>&nbsp;Project on GitHub</a></li>
 
-            <li><a [routerLink]="['/car']"><i class="fa fa-car fa-fw" aria-hidden="true"></i>&nbsp;Car</a></li>
 
           </ul>
         </li>
