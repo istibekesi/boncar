@@ -17,7 +17,7 @@ export class HeaderComponent implements OnInit {
   constructor(public af: AngularFire) {
     this.af.auth.subscribe(auth => {
       if (auth) {
-        console.log('Authentication success!' + auth.provider);
+        console.log('Authentication success! (' + auth.provider + ')');
       } else {
         console.log('Logged out! (auth = null)');
       }
