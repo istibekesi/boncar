@@ -44,6 +44,11 @@
           <a role="button" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
             <i class="fa fa-user-secret"></i>
           </a>
+          <!--
+          <a href="#" class="dropdown-toggle profile-image" data-toggle="dropdown" role="button" aria-expanded="false">
+            <img height="36" width="36" src="/static/user-avatar/i-user-secret-200.PNG" class="img-circle special-img">
+          </a>
+          -->
           <ul class="dropdown-menu" role="menu">
             <li><a [routerLink]="['/user', currentUserAuth.uid]"><i class="fa fa-user fa-fw" aria-hidden="true"></i>&nbsp;Profile</a></li>
             <li class="divider"></li>
@@ -53,9 +58,8 @@
 
         <!-- Facebook user logged in-->
         <li *ngIf="currentUserAuth && currentUserAuth.provider == 2" class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-            <i class="fa fa-facebook-official"></i>
-          </a>
+          <a href="#" class="dropdown-toggle profile-image" data-toggle="dropdown" role="button" aria-expanded="false">
+            <img height="36" width="36" [src]="currentUserAuth.auth?.photoURL" class="img-circle special-img"><!--<b class="caret"></b>--></a>
           <ul class="dropdown-menu" role="menu">
             <li><a [routerLink]="['/user']"><i class="fa fa-user fa-fw" aria-hidden="true"></i>&nbsp;Profile</a></li>
             <li class="divider"></li>
@@ -69,6 +73,9 @@
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
             <i class="fa fa-envelope"></i>
           </a>
+          <!--<a href="#" class="dropdown-toggle profile-image" data-toggle="dropdown" role="button" aria-expanded="false">
+            <img height="36" width="36" src="/static/user-avatar/i-user-200.PNG" class="img-circle special-img">
+          </a>-->
           <ul class="dropdown-menu" role="menu">
             <li><a [routerLink]="['/user']"><i class="fa fa-user fa-fw" aria-hidden="true"></i>&nbsp;Profile</a></li>
             <li class="divider"></li>

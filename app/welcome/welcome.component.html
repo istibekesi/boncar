@@ -1,6 +1,6 @@
 <h1>
   BonCar
-  <small>Ridesharing for Hardworking People</small>
+  <small>ridesharing <!--for Hardworking People--></small>
 </h1>
 
 <br/>
@@ -9,6 +9,7 @@
   <div class="col-md-4 col-md-offset-4">
     Select Date :
     *<input type="date" [(ngModel)]="selectedDay">*
+    <input type="text" [(ngModel)]="selectedDay">
     <button (click)="goDate()" class="btn btn-info" [disabled]="!selectedDay">Go</button>
   </div>
 

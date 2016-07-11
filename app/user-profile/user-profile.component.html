@@ -33,6 +33,7 @@
     <div [ngSwitch]="currentUserAuth?.provider">
       <div *ngSwitchCase="2">
         <h2>{{currentUserAuth?.auth?.displayName}}</h2>
+        <i class="fa fa-envelope fa-fw"></i>&nbsp; {{currentUserAuth?.auth?.email}}
       </div>
       <div *ngSwitchCase="4">
         <h2>User Profile</h2>
