@@ -3,13 +3,14 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class CarService {
   onlineInstaArray : Array<any> = [
-    {id : "fill_0" , src: "https://scontent-vie1-1.cdninstagram.com/t51.2885-15/s640x640/sh0.08/e35/c0.135.1080.1080/13413244_1043651565710149_835427729_n.jpg"},
-    {id : "fill_1" , src: "https://scontent-vie1-1.cdninstagram.com/t51.2885-15/s640x640/sh0.08/e35/13402297_270210406702581_1449139749_n.jpg"},
-    {id : "fill_2" , src: "https://scontent-vie1-1.cdninstagram.com/t51.2885-15/s640x640/sh0.08/e35/13398501_1008870309191337_1018620738_n.jpg"},
-    {id : "fill_3" , src: "https://scontent-vie1-1.cdninstagram.com/t51.2885-15/s640x640/sh0.08/e35/13259568_243510826006314_1553548347_n.jpg"},
-    {id : "fill_4" , src: "https://scontent-vie1-1.cdninstagram.com/t51.2885-15/s640x640/sh0.08/e35/13249805_872860182859674_384956343_n.jpg"},
-    {id : "fill_5" , src: "https://scontent-vie1-1.cdninstagram.com/t51.2885-15/s640x640/sh0.08/e35/c1.0.1078.1078/13151230_1620141114973447_389653414_n.jpg"},
-    {id : "fill_6" , src: "https://scontent-vie1-1.cdninstagram.com/t51.2885-15/s640x640/sh0.08/e35/12918008_1962044680688116_1118873059_n.jpg"}
+    {id : "fill_0" , src: "https://scontent-vie1-1.cdninstagram.com/t51.2885-15/s640x640/sh0.08/e35/13534613_636974456453550_618068237_n.jpg"},
+    {id : "fill_1" , src: "https://scontent-vie1-1.cdninstagram.com/t51.2885-15/s640x640/sh0.08/e35/12918008_1962044680688116_1118873059_n.jpg"},
+    {id : "fill_2" , src: "https://scontent-vie1-1.cdninstagram.com/t51.2885-15/s640x640/sh0.08/e35/13126639_604190149748207_1359223909_n.jpg"},
+    {id : "fill_3" , src: "https://scontent-vie1-1.cdninstagram.com/t51.2885-15/s640x640/sh0.08/e35/13534190_1616399882007175_1503611030_n.jpg"},
+    {id : "fill_4" , src: "https://scontent-vie1-1.cdninstagram.com/t51.2885-15/s640x640/sh0.08/e35/13408989_1733237326948148_1354724988_n.jpg"},
+    {id : "fill_5" , src: "https://scontent-vie1-1.cdninstagram.com/t51.2885-15/s640x640/sh0.08/e35/12976339_219013415140153_241427669_n.jpg"},
+    {id : "fill_6" , src: "https://scontent-vie1-1.cdninstagram.com/t51.2885-15/s640x640/sh0.08/e35/12328302_988114234610928_1021012051_n.jpg"}
+
   ];
 
   instaArray : Array<any> = [

@@ -15,7 +15,7 @@ export const routes: RouterConfig = [
   { path: 'user', component: UserProfileComponent },
   { path: 'user/:id', component: UserProfileComponent },
   { path: 'rides/:day', component: RideListComponent },
-  { path: 'ride/:rideid', component: RideComponent }
+  { path: 'ride/:day/:rideid', component: RideComponent }
 ];
 
 export const BONCAR_ROUTER_PROVIDERS = [

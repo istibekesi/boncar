@@ -59,7 +59,7 @@ export class RideListComponent implements OnInit {
   }
 
   goRide(rideId : string) {
-    this.router.navigate(['/ride', rideId]);
+    this.router.navigate(['/ride', this.selectedDate, rideId]);
   }
 
 }
