@@ -1,39 +1,47 @@
 {
   "_args": [
     [
-      "bootswatch",
-      "D:\\Isti\\Work\\gitspace\\boncar"
+      {
+        "raw": "bootswatch@^3.3.6",
+        "scope": null,
+        "escapedName": "bootswatch",
+        "name": "bootswatch",
+        "rawSpec": "^3.3.6",
+        "spec": ">=3.3.6 <4.0.0",
+        "type": "range"
+      },
+      "e:\\github\\boncar"
     ]
   ],
-  "_from": "bootswatch@latest",
+  "_from": "bootswatch@>=3.3.6 <4.0.0",
   "_id": "bootswatch@3.3.6",
   "_inCache": true,
   "_installable": true,
   "_location": "/bootswatch",
   "_nodeVersion": "0.12.5",
   "_npmUser": {
-    "email": "hello@thomaspark.me",
-    "name": "thomaspark"
+    "name": "thomaspark",
+    "email": "hello@thomaspark.me"
   },
   "_npmVersion": "2.11.2",
   "_phantomChildren": {},
   "_requested": {
-    "name": "bootswatch",
-    "raw": "bootswatch",
-    "rawSpec": "",
+    "raw": "bootswatch@^3.3.6",
     "scope": null,
-    "spec": "latest",
-    "type": "tag"
+    "escapedName": "bootswatch",
+    "name": "bootswatch",
+    "rawSpec": "^3.3.6",
+    "spec": ">=3.3.6 <4.0.0",
+    "type": "range"
   },
   "_requiredBy": [
-    "#USER",
     "/"
   ],
   "_resolved": "https://registry.npmjs.org/bootswatch/-/bootswatch-3.3.6.tgz",
   "_shasum": "70e22a1cf596e62c5c2dfad11819caa9d6bdf088",
   "_shrinkwrap": null,
-  "_spec": "bootswatch",
-  "_where": "D:\\Isti\\Work\\gitspace\\boncar",
+  "_spec": "bootswatch@^3.3.6",
+  "_where": "e:\\github\\boncar",
   "author": {
     "name": "Thomas Park"
   },

@@ -34,7 +34,6 @@
         <div class="form-group">
           <div class="col-lg-9 col-lg-offset-2">
             <button (click)="onSignForm(f)" class="btn btn-success" [disabled]="!f.valid">Log In</button>
-            *{{ password.value == passwordConfirm.value}}****{{ password.value }}***{{ passwordConfirm.value }}
             <!-- <button (click)="testR()" class="btn btn-success">Route</button>-->
             <a [routerLink]="['/login']" class="btn btn-link pull-right">Have an account already?</a>
           </div>
