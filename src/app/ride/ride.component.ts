@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ROUTER_DIRECTIVES, Router, ActivatedRoute } from "@angular/router";
-import { AngularFire, FirebaseListObservable } from 'angularfire2';
+import { AngularFire, FirebaseListObservable, FirebaseObjectObservable } from 'angularfire2';
 
 @Component({
   moduleId: module.id,
@@ -8,9 +8,9 @@ import { AngularFire, FirebaseListObservable } from 'angularfire2';
   template: `
     <div>Hello Ride Component!</div>
     
-    {{  ride | async }}*<br/>
-    {{ (ride | async)?.fkOwnerUserUid }}*<br/>
-    {{ (ride | async)?.chat | json }}*<br/>
+    {{  rideObs | async }}*<br/>
+    {{ (rideObs | async)?.fkOwnerUserUid }}*<br/>
+    {{ (rideObs | async)?.chat | json }}*<br/>
     
   `,
   directives: [ ROUTER_DIRECTIVES ]
@@ -18,7 +18,7 @@ import { AngularFire, FirebaseListObservable } from 'angularfire2';
 export class RideComponent implements OnInit {
 
   rideId : string;
-  ride : any;
+  rideObs : FirebaseObjectObservable<any>;
   day : Date;
 
   constructor(private route: ActivatedRoute, private router: Router, public af: AngularFire) {}
@@ -27,7 +27,7 @@ export class RideComponent implements OnInit {
     this.route.params.subscribe(params => {
       this.day = params['day'];
       this.rideId = params['rideid'];
-      this.ride = this.af.database.object('rides/' + this.day + '/' + this.rideId );
+      this.rideObs = this.af.database.object('rides/' + this.day + '/' + this.rideId );
     });
   }
 

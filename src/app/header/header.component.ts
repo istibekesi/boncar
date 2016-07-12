@@ -31,7 +31,7 @@ export class HeaderComponent implements OnInit {
   loginAnonymous() {
     console.log("Logging in by Anonymous user...");
     this.af.auth.login().then(
-      success => console.log('Anonymous login success: ' + success)
+      success => console.log('Anonymous login success: ' + success.uid)
     ).catch(
       err => console.log('Anonymous login FAILED: ' + err)
     );
@@ -48,7 +48,7 @@ export class HeaderComponent implements OnInit {
       provider: AuthProviders.Facebook,
       method: AuthMethods.Popup,
     }).then(
-      success => console.log('Facbook login success: ' + success)
+      success => console.log('Facbook login success: ' + success.uid)
     ).catch(
       err => console.log('Facbook login FAILED: ' + err)
     );

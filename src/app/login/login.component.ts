@@ -13,29 +13,12 @@ import { EmailPasswordCredentials } from "angularfire2/es6/providers/auth_backen
 export class LoginComponent implements OnInit {
 
   constructor(public af: AngularFire, private router: Router) {
-    this.af.auth.subscribe(auth => {
-      if (auth) {
-        console.log('Authentication success, lest nevigate to /user profile page...');
-        this.router.navigate(['/user']);
-      } else {
-        console.log('Logged out! (auth = null)');
-      }
-    });
   }
 
   ngOnInit() {
   }
 
-
-  testR() {
-    console.log('Go');
-    this.router.navigate(['/user']);
-  }
-
   onLoginForm(formObject) {
-    //console.log("***" + formObject.controls.email.value);
-    //console.log("***" + formObject.controls.password.value);
-
     console.log("Logging in email/password user...");
 
     let c : EmailPasswordCredentials = {
@@ -46,7 +29,10 @@ export class LoginComponent implements OnInit {
     this.af.auth.login(
       c, { provider: AuthProviders.Password, method: AuthMethods.Password }
     ).then(
-      success => console.log('Email login success: ' + success)
+      success => {
+        console.log('Email login success: ' + success.uid);
+        this.router.navigate(['/user']);
+      }
     ).catch(
       err => console.log('Email login FAILED: ' + err)
     );
