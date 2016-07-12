@@ -4,18 +4,18 @@ import {CarService} from './car.service';
 @Component({
   selector: '[boncar-seat]',
   template: `
-    
+
     <svg:g>
         <svg:defs>
-            <svg:pattern [attr.id]="index" patternUnits="objectBoundingBox" width="25" height="25">
+            <svg:pattern [attr.id]="svgId" patternUnits="objectBoundingBox" width="25" height="25">
                 <svg:image [attr.xlink:href]="avatarSrc" x="0" y="0" width="25" height="25" />
             </svg:pattern>
         </svg:defs>
-        
+
         <svg:rect [attr.x]="attrX" [attr.y]="attrY" rx="1" ry="1" width="25" height="25" class="seat" [attr.fill]="getFillUrl()">
         </svg:rect>
     </svg:g>
-    
+
   `,
   styles : [`
     .seat {
@@ -32,19 +32,20 @@ import {CarService} from './car.service';
 export class SeatComponent implements OnInit {
   @Input() attrX: number;
   @Input() attrY: number;
+  @Input() svgId: string;
 
   avatarSrc : string;
-  index : string;
-
-  getFillUrl() : string {
-    return `url(#${this.index})`;
-  }
 
   constructor(private carService:CarService) {
     let avatar = this.carService.getRandomInstaAvatar();
-    this.index = avatar.id;
+    //this.index = avatar.id;
     this.avatarSrc = avatar.src;
   }
+
+  getFillUrl() : string {
+    return `url(#${this.svgId})`;
+  }
+
 
   ngOnInit() {
   }

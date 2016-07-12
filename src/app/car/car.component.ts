@@ -7,21 +7,21 @@ import {SeatComponent} from './seat.component';
   template: `
     <div>
     <div class="well clearfix">
-      
+
       <div class="btn-group">
         <button (click)="removeSeat()" type="button" class="btn btn-success btn-xs"><i class="fa fa-minus" aria-hidden="true"></i>
 </button>
         <button (click)="addSeat()" type="button" class="btn btn-success btn-xs"><i class="fa fa-plus" aria-hidden="true"></i>
 </button>
       </div>
-      
+
       <br/><br/>
-      
+
       <div style="width:300px;height:600px;border-style:solid;border-width:1px;">
-      
+
         <svg version="1.1"
             xmlns="http://www.w3.org/2000/svg"
-            xmlns:xlink="http://www.w3.org/1999/xlink" 
+            xmlns:xlink="http://www.w3.org/1999/xlink"
             id="svg1" height="100%" width="100%" [attr.viewBox]="viewBox(200)" preserveAspectRatio="xMidYMin">
           <g>
             <defs>
@@ -29,12 +29,11 @@ import {SeatComponent} from './seat.component';
 
             <rect x="2" y="2" rx="3" ry="3" width="96" [attr.height]="yHeigth(196)" class="car-rect"></rect>
             <rect x="4" y="44" rx="3" ry="3" width="92" [attr.height]="yHeigth(110)" fill="white"></rect>
-            
-            <g boncar-seat *ngFor="let s of seats; let i = index" 
-              [attrX]="seatX(i)" [attrY]="seatY(i)"></g>
-              
-            
-            
+
+            <g boncar-seat *ngFor="let s of seats; let i = index"
+              [attrX]="seatX(i)" [attrY]="seatY(i)" [svgId]="'svg-id-'+i"></g>
+
+
           </g>
         </svg>
 
