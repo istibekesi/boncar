@@ -17,7 +17,7 @@ import {SeatComponent} from './seat.component';
 
       <br/><br/>
 
-      <div style="width:300px;height:600px;border-style:solid;border-width:1px;">
+      <div style="height:500px;border-style:solid;border-width:0px;">
 
         <svg version="1.1"
             xmlns="http://www.w3.org/2000/svg"
@@ -50,14 +50,12 @@ import {SeatComponent} from './seat.component';
 })
 export class CarComponent implements OnInit {
 
-  name : string;
   seats : Array<number>;
 
   constructor() {
   }
 
   ngOnInit() {
-    this.name = "inited" ;
     this.seats = [0, 1, 2, 4, 5];
   }
 
