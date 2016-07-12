@@ -7,9 +7,8 @@ import { CarComponent } from '../car/car.component';
   moduleId: module.id,
   selector: 'boncar-ride',
   template: `
-    <h3>Hello Ride Component!</h3>
 
-    <div class="row" style="padding-top:40px"></div>
+    <div class="row" style="padding-top:10px"></div>
 
     <div class="row">
       <div class="col-sm-4">
