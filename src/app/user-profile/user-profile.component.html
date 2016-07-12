@@ -19,13 +19,15 @@
       <!-- EMAIL -->
       <div *ngIf="currentUserAuth?.provider == 4 " class="text-center">
         <h2>
-          <i class="fa fa-user fa-5x" aria-hidden="true"></i>
+          <img heigth="100" width="100" src="../static/user-avatar/i-user-200.PNG" class="img-responsive center-block img-circle" alt="Profile">
+          <!-- <i class="fa fa-user fa-5x" aria-hidden="true"></i> -->
         </h2>
       </div>
       <!-- ANONYMOUS -->
       <div *ngIf="currentUserAuth?.provider == 5 " class="text-center">
         <h2>
-          <i class="fa fa-user-secret fa-5x" aria-hidden="true"></i>
+          <img heigth="100" width="100" src="../static/user-avatar/i-user-secret-200.PNG" class="img-responsive center-block img-circle" alt="Profile">
+          <!-- <i class="fa fa-user-secret fa-5x" aria-hidden="true"></i> -->
         </h2>
       </div>
     </div>
@@ -49,9 +51,11 @@
       </div>
     </div>
   </div>
-    <!--<p>*{{currentUserAuth?.uid}}*</p> -->
-
 </div>
+
+
+
+<div class="row" style="padding-top:40px"></div>
 
 <div class="row" *ngIf="currentUserAuth">
   <form #f="ngForm" class="form-horizontal">
@@ -78,8 +82,11 @@
 
       <div class="form-group">
         <div class="col-sm-8 col-sm-offset-3">
-          <button (click)="updateUserDetails()" class="btn btn-success" [disabled]="f.pristine">Save</button>
+          <button (click)="updateUserDetails()" class="btn btn-success">Save</button>
           <!-- {{f?.pristine}}***{{alias.pristine}}***{{avatarUrl?.pristine}}*** -->
+          <!--
+            Damn: http://stackoverflow.com/questions/35496770/does-angular-2-0-have-something-similar-to-setpristine-function-in-angular-1
+          -->
         </div>
       </div>
 

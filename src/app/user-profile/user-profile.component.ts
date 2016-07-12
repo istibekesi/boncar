@@ -37,15 +37,24 @@ export class UserProfileComponent implements OnInit {
             if (this.currentUserAuth.provider == 2) {
               // Facebook user
               this.ud = new UserDetail("",this.currentUserAuth.auth.photoURL, this.currentUserAuth.auth.displayName);
-            } else {
+
+              // Try to persist the user details
+              // this.udObs.update({ avatarUrl : this.currentUserAuth.auth.photoURL, alias : this.currentUserAuth.auth.displayName });
+
+            } else if (this.currentUserAuth.provider == 4) {
               // Anonymous or Password
+              this.ud = new UserDetail("","", this.currentUserAuth.auth.email);
+            } else {
               this.ud = new UserDetail("","","anonymous");
             }
+
+            console.log("Dont exist? Let's save it than!")
+            this.updateUserDetails();
 
           } else {
             // object exists
             console.log("User Details retrieved... details already exists!");
-            this.ud = userDetail;   // Wow... we should keep firebase aligned to the interface ;)
+            this.ud = userDetail;   // Wow... we should keep firebase aligned to the iUserDetail interface ;)
           }
 
         });
@@ -67,6 +76,7 @@ export class UserProfileComponent implements OnInit {
 
   randomAvatar() {
     this.ud.avatarUrl = this.cs.getRandomInstaAvatar().src;
+
   }
 
 }
