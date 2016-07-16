@@ -26,6 +26,16 @@
 
         <li><a [routerLink]="['/ride/2016-07-13/-KM56ek3MIRW6E8SulDL']">test ride</a></li>
 
+
+        <form class="navbar-form navbar-left">
+          <div class="form-group">
+            <input class="form-control" placeholder="Search" type="text" [(ngModel)]="loginService.testObject.c">
+          </div>
+          <button type="submit" class="btn btn-default" (click)="loginService.minus()">Minus</button>
+          <button type="submit" class="btn btn-default" (click)="loginService.plus()">Plus</button>
+        </form>
+
+
       </ul>
 
 

@@ -5,6 +5,7 @@ import { FIREBASE_PROVIDERS, defaultFirebase, firebaseAuthConfig, AuthProviders,
 import { BONCAR_ROUTER_PROVIDERS } from './app/app.routes';
 import { provide } from '@angular/core';
 import { APP_BASE_HREF} from '@angular/common';
+import { LoginService } from './app/login.service';
 
 
 if (environment.production) {
@@ -27,6 +28,8 @@ bootstrap(AppComponent, [
   firebaseAuthConfig({
     provider: AuthProviders.Anonymous,
     method: AuthMethods.Anonymous
-  })
+  }),
+
+  LoginService
 ]);
 

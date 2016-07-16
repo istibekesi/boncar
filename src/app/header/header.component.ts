@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFire, AuthProviders, AuthMethods, FirebaseAuthState } from "angularfire2";
 import { ROUTER_DIRECTIVES } from "@angular/router";
+import { LoginService } from '../login.service' ;
 
 
 @Component({
@@ -14,7 +15,7 @@ export class HeaderComponent implements OnInit {
   currentUserAuth : FirebaseAuthState;
 
 
-  constructor(public af: AngularFire) {
+  constructor(public af: AngularFire, public loginService: LoginService) {
     this.af.auth.subscribe(auth => {
       if (auth) {
         console.log('Authentication success! (' + auth.provider + ')');
