@@ -13,19 +13,16 @@ import { LoginService } from '../login.service' ;
 })
 export class UserProfileComponent implements OnInit {
 
-  //currentUserAuth : FirebaseAuthState;
-  //ud : UserDetail;
-
-  udObs : FirebaseObjectObservable<UserDetail>;
+  //udObs : FirebaseObjectObservable<UserDetail>;
 
   constructor(public af: AngularFire, public cs : CarService, public loginService : LoginService) {
   }
 
-  ngOnInit() {
+  ngOnInit() {}
 
-
-
+    /*
     this.loginService.userAuthObservable.subscribe( authChanged => {
+
 
       if (authChanged) {
 
@@ -85,16 +82,15 @@ export class UserProfileComponent implements OnInit {
       }
     });
 
+*//*
   }
-
   updateUserDetails() {
     let avatar = this.loginService.userDetail.avatarUrl ? this.loginService.userDetail.avatarUrl : "";
     this.udObs.update({ avatarUrl : avatar, alias : this.loginService.userDetail.alias });
-  }
+  }*/
 
   randomAvatar() {
     this.loginService.userDetail.avatarUrl = this.cs.getNewRandomInstaAvatar(this.loginService.userDetail.avatarUrl).src;
-
   }
 
 }
