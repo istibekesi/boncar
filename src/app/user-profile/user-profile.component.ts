@@ -58,7 +58,7 @@ export class UserProfileComponent implements OnInit {
 
     });
 
-    
+
     this.loginService.setUserDetail(new UserDetail("","","anonymous"));
     this.udObs = this.af.database.object('userDetail/' + this.loginService.userAuth.uid);
     this.udObs.subscribe(userDetail => {
@@ -93,7 +93,7 @@ export class UserProfileComponent implements OnInit {
   }
 
   randomAvatar() {
-    this.loginService.userDetail.avatarUrl = this.cs.getRandomInstaAvatar().src;
+    this.loginService.userDetail.avatarUrl = this.cs.getNewRandomInstaAvatar(this.loginService.userDetail.avatarUrl).src;
 
   }
 

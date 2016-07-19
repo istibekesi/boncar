@@ -29,4 +29,17 @@ export class CarService {
     return this.onlineInstaArray[rand];
   }
 
+  /**
+   * Makes sure, the result is differnt from the previous
+   */
+  getNewRandomInstaAvatar(oldA : string) : any {
+    let rand = Math.floor((Math.random() * this.onlineInstaArray.length) );
+    console.log('Random ****' + rand);
+    let newA = this.onlineInstaArray[rand];
+    if (oldA == newA.src) {
+      return this.getNewRandomInstaAvatar(oldA);
+    }
+    return newA;
+  }
+
 }
