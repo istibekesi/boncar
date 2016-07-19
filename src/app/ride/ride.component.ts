@@ -20,10 +20,10 @@ import 'rxjs/add/operator/map';
 
       <div class="col-sm-8">
         <h2>Ride on {{day}}</h2>
-        
-        
+
+
         <br/>
-        
+
         <!--
         <ul class="list-group">
           <li *ngFor="let chatEntry of chatEntries" class="list-group-item">
@@ -32,36 +32,40 @@ import 'rxjs/add/operator/map';
           </li>
         </ul>
         -->
-        
-        
-        <h3>Chat</h3>
-        <div *ngFor="let chatEntry of chatEntries">
-            <img class="img-circle pull-left" [src]="chatEntry.newsht?.avatarUrl" heigth="36" width="36">
-            <p class="text-muted">{{chatEntry.newsht?.alias}}&nbsp;</p>
-            {{chatEntry.msg}}
-        </div>
-        
-        <div>
-            <img class="img-circle pull-left" [src]="loginService.userDetail?.avatarUrl" heigth="36" width="36">
-            <p class="text-muted">{{loginService.userDetail?.alias}}&nbsp;</p>
-            <input type="text" [(ngModel)]="msg">
-            <button (click)="postChat()" class="btn btn-success">Send</button>
-        </div>
-        
-        <!--<div class="form-group">
-          <input type="text" [(ngModel)]="msg">
-          <button (click)="postChat()" class="btn btn-success">Send</button>
-        </div>-->
-        
+
+
+        <h3>Messages</h3>
         <hr/>
-        
+        <div *ngFor="let chatEntry of chatEntries">
+            <img class="img-circle pull-left" [src]="chatEntry.newsht?.avatarUrl" heigth="52" width="52" style="margin:0 15px">
+            <p class="text-muted" style="margin:0 0 5px">{{chatEntry.newsht?.alias}}&nbsp;</p>
+            {{chatEntry.msg}}
+            <hr/>
+        </div>
+
+        <div *ngIf="loginService.userAuth">
+            <img class="img-circle pull-left" [src]="loginService.userDetail?.avatarUrl" heigth="52" width="52" style="margin:0 15px">
+            <p class="text-muted" style="margin:0 0 5px">{{loginService.userDetail?.alias}}&nbsp;</p>
+
+            <div class="form-group">
+              <div class="input-group input-group-sm" >
+                <input type="text" class="form-control" [(ngModel)]="msg">
+                <span class="input-group-btn">
+                  <button class="btn btn-primary" (click)="postChat()" type="button">Send</button>
+                </span>
+              </div>
+            </div>
+
+        </div>
+
+
         <!--
         Chat:<br/>
         {{chatEntries | json}}
         -->
-        
+
       </div>
-      
+
     </div>
   `,
   directives: [ ROUTER_DIRECTIVES, CarComponent ]
