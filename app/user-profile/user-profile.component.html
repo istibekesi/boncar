@@ -2,29 +2,29 @@
 <div class="row" style="padding-top:40px">
 </div>
 
-<div class="row" *ngIf="currentUserAuth">
+<div class="row" *ngIf="loginService.userAuth">
 
   <div class="col-sm-4">
 
 
-    <div *ngIf="ud.avatarUrl">
-      <img heigth="100" width="100" [src]="ud.avatarUrl" class="img-responsive center-block img-circle" alt="Profile">
+    <div *ngIf="loginService.userDetail.avatarUrl">
+      <img heigth="100" width="100" [src]="loginService.userDetail.avatarUrl" class="img-responsive center-block img-circle" alt="Profile">
     </div>
 
-    <div *ngIf="!ud.avatarUrl">
+    <div *ngIf="!loginService.userDetail.avatarUrl">
       <!-- FACEBOOK -->
-      <div *ngIf="currentUserAuth?.provider == 2 ">
-        <img [src]="currentUserAuth?.auth?.photoURL" class="img-responsive center-block img-circle" alt="Profile">
+      <div *ngIf="loginService.userAuth?.provider == 2 ">
+        <img [src]="loginService.userAuth?.auth?.photoURL" class="img-responsive center-block img-circle" alt="Profile">
       </div>
       <!-- EMAIL -->
-      <div *ngIf="currentUserAuth?.provider == 4 " class="text-center">
+      <div *ngIf="loginService.userAuth?.provider == 4 " class="text-center">
         <h2>
           <img heigth="100" width="100" src="../static/user-avatar/i-user-200.PNG" class="img-responsive center-block img-circle" alt="Profile">
           <!-- <i class="fa fa-user fa-5x" aria-hidden="true"></i> -->
         </h2>
       </div>
       <!-- ANONYMOUS -->
-      <div *ngIf="currentUserAuth?.provider == 5 " class="text-center">
+      <div *ngIf="loginService.userAuth?.provider == 5 " class="text-center">
         <h2>
           <img heigth="100" width="100" src="../static/user-avatar/i-user-secret-200.PNG" class="img-responsive center-block img-circle" alt="Profile">
           <!-- <i class="fa fa-user-secret fa-5x" aria-hidden="true"></i> -->
@@ -37,14 +37,14 @@
 
   <div class="col-sm-8">
 
-    <div [ngSwitch]="currentUserAuth?.provider">
+    <div [ngSwitch]="loginService.userAuth?.provider">
       <div *ngSwitchCase="2">
-        <h2>{{currentUserAuth?.auth?.displayName}}</h2>
-        <i class="fa fa-envelope fa-fw"></i>&nbsp; {{currentUserAuth?.auth?.email}}
+        <h2>{{loginService.userAuth?.auth?.displayName}}</h2>
+        <i class="fa fa-envelope fa-fw"></i>&nbsp; {{loginService.userAuth?.auth?.email}}
       </div>
       <div *ngSwitchCase="4">
         <h2>User Profile</h2>
-        <i class="fa fa-envelope fa-fw"></i>&nbsp; {{currentUserAuth?.auth?.email}}
+        <i class="fa fa-envelope fa-fw"></i>&nbsp; {{loginService.userAuth?.auth?.email}}
       </div>
       <div *ngSwitchCase="5">
         <h2>Anonymous User</h2>
@@ -57,14 +57,14 @@
 
 <div class="row" style="padding-top:40px"></div>
 
-<div class="row" *ngIf="currentUserAuth">
+<div class="row" *ngIf="loginService.userAuth">
   <form #f="ngForm" class="form-horizontal">
     <fieldset>
 
       <div class="form-group">
         <label for="alias" class="col-lg-offset-1 col-sm-3 control-label">Nickname</label>
         <div class="col-sm-8">
-          <input ngControl="alias" #alias="ngForm" [(ngModel)]="ud.alias" class="form-control" id="alias" placeholder="Nickname" type="text">
+          <input ngControl="alias" #alias="ngForm" [(ngModel)]="loginService.userDetail.alias" class="form-control" id="alias" placeholder="Nickname" type="text">
         </div>
       </div>
 
@@ -72,7 +72,7 @@
         <label for="avatarUrl" class="col-lg-offset-1 col-sm-3 control-label">Avatar URL</label>
         <div class="col-sm-8">
           <div class="input-group">
-            <input ngControl="avatarUrl" #avatarUrl="ngForm" [(ngModel)]="ud.avatarUrl" class="form-control" id="avatarUrl" placeholder="Avatar URL" type="text">
+            <input ngControl="avatarUrl" #avatarUrl="ngForm" [(ngModel)]="loginService.userDetail.avatarUrl" class="form-control" id="avatarUrl" placeholder="Avatar URL" type="text">
             <span class="input-group-btn">
               <button class="btn btn-success" type="button" (click)="randomAvatar()"><i class="fa fa-refresh"></i></button>
             </span>
@@ -95,7 +95,7 @@
 
 </div>
 
-<div class="row" *ngIf="!currentUserAuth">
+<div class="row" *ngIf="!loginService.userAuth">
   <h3>Logged out!</h3>
 </div>
 
