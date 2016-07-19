@@ -26,16 +26,6 @@
 
         <li><a [routerLink]="['/ride/2016-07-13/-KM56ek3MIRW6E8SulDL']">test ride</a></li>
 
-
-        <form class="navbar-form navbar-left">
-          <div class="form-group">
-            <input class="form-control" placeholder="Search" type="text" [(ngModel)]="loginService.testObject.c">
-          </div>
-          <button type="submit" class="btn btn-default" (click)="loginService.minus()">Minus</button>
-          <button type="submit" class="btn btn-default" (click)="loginService.plus()">Plus</button>
-        </form>
-
-
       </ul>
 
 
@@ -43,7 +33,7 @@
       <ul class="nav navbar-nav navbar-right">
 
         <!-- Not logged in! -->
-        <li *ngIf="!currentUserAuth" class="dropdown">
+        <li *ngIf="!loginService.userAuth" class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Login<span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
             <li><a [routerLink]="['/login']" ><i class="fa fa-envelope fa-fw" aria-hidden="true"></i>&nbsp;Email</a></li>
@@ -53,7 +43,7 @@
         </li>
 
         <!-- Anonymous user logged in-->
-        <li *ngIf="currentUserAuth && currentUserAuth.anonymous" class="dropdown">
+        <li *ngIf="loginService.userAuth && loginService.userAuth.anonymous" class="dropdown">
           <a role="button" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
             <i class="fa fa-user-secret"></i>
           </a>
@@ -63,16 +53,16 @@
           </a>
           -->
           <ul class="dropdown-menu" role="menu">
-            <li><a [routerLink]="['/user', currentUserAuth.uid]"><i class="fa fa-user fa-fw" aria-hidden="true"></i>&nbsp;Profile</a></li>
+            <li><a [routerLink]="['/user', loginService.userAuth.uid]"><i class="fa fa-user fa-fw" aria-hidden="true"></i>&nbsp;Profile</a></li>
             <li class="divider"></li>
             <li><a role="button" (click)="logoutAnonymous()"><i class="fa fa-sign-out fa-fw" aria-hidden="true"></i>&nbsp;Logout</a></li>
           </ul>
         </li>
 
         <!-- Facebook user logged in-->
-        <li *ngIf="currentUserAuth && currentUserAuth.provider == 2" class="dropdown">
+        <li *ngIf="loginService.userAuth && loginService.userAuth.provider == 2" class="dropdown">
           <a href="#" class="dropdown-toggle profile-image" data-toggle="dropdown" role="button" aria-expanded="false">
-            <img height="36" width="36" [src]="currentUserAuth.auth?.photoURL" class="img-circle special-img"><!--<b class="caret"></b>--></a>
+            <img height="36" width="36" [src]="loginService.userAuth.auth?.photoURL" class="img-circle special-img"><!--<b class="caret"></b>--></a>
           <ul class="dropdown-menu" role="menu">
             <li><a [routerLink]="['/user']"><i class="fa fa-user fa-fw" aria-hidden="true"></i>&nbsp;Profile</a></li>
             <li class="divider"></li>
@@ -82,7 +72,7 @@
 
 
         <!-- Email user logged in-->
-        <li *ngIf="currentUserAuth && currentUserAuth.provider == 4" class="dropdown">
+        <li *ngIf="loginService.userAuth && loginService.userAuth.provider == 4" class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
             <i class="fa fa-user"></i>
           </a>

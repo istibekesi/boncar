@@ -12,7 +12,7 @@ import { LoginService } from '../login.service' ;
   directives: [ ROUTER_DIRECTIVES ]
 })
 export class HeaderComponent implements OnInit {
-  currentUserAuth : FirebaseAuthState;
+  //currentUserAuth : FirebaseAuthState; lets get it from the common login service
 
 
   constructor(public af: AngularFire, public loginService: LoginService) {
@@ -22,7 +22,7 @@ export class HeaderComponent implements OnInit {
       } else {
         console.log('Logged out! (auth = null)');
       }
-      this.currentUserAuth = auth;
+      loginService.setUserAuth(auth);
     });
   }
 
@@ -41,6 +41,7 @@ export class HeaderComponent implements OnInit {
   logoutAnonymous() {
     console.log("Log out Anonymous user...");
     this.af.auth.logout();
+    this.loginService.logout();
   }
 
   loginFacebook() {
@@ -58,11 +59,13 @@ export class HeaderComponent implements OnInit {
   logoutFacebook() {
     console.log("Log out Facebook user...");
     this.af.auth.logout();
+    this.loginService.logout();
   }
 
   logoutEmail() {
     console.log("Log out Email user...");
     this.af.auth.logout();
+    this.loginService.logout();
   }
 
 }
