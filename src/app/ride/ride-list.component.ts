@@ -7,12 +7,18 @@ import { AngularFire, FirebaseListObservable } from 'angularfire2';
   selector: 'boncar-ride-list',
   template: `
     <div>
-      <h3>Hello Rides List!</h3>
-      Selected date: {{selectedDate}}
-      <br/><br/><br/>
+      <h1>
+      Rides
+      <small *ngIf="selectedDate">{{selectedDate | date:"yy-MM-dd"}}</small>
+      <small *ngIf="!selectedDate">unpcoming</small>
+      </h1>
+      <br/>
+
       
       
-      <table class="table table-striped table-hover ">
+      
+      <!-- should not be shown, instead upcoming should be used -->
+      <table class="table table-striped table-hover " *ngIf="selectedDate">
         <thead>
           <tr>
             <th>#</th>
@@ -29,15 +35,7 @@ import { AngularFire, FirebaseListObservable } from 'angularfire2';
             <td><a (click)="goRide(ride.$key)" class="btn btn-info btn-sm">Go</a></td>
           </tr>
         </tbody>
-      </table> 
-      
-      <!--
-      <ul *ngFor="let ride of rides | async">
-        <li class="text">
-          {{ride?.$key}} : {{ride?.fkOwnerUserUid}}
-        </li>
-      </ul>
-      -->
+      </table>
       
     </div>
   `,
@@ -53,8 +51,14 @@ export class RideListComponent implements OnInit {
 
   ngOnInit() {
     this.route.params.subscribe(params => {
-      this.selectedDate = params['day'];
-      this.rides = this.af.database.list('rides/'+this.selectedDate);
+      let daySelector = params['day'];
+      if (daySelector == 'today' || daySelector == 'tomorrow' || daySelector == 'upcoming' ) {
+        //
+      } else {
+        this.selectedDate = params['day'];
+        this.rides = this.af.database.list('rides/'+this.selectedDate);
+      }
+
     });
   }
 

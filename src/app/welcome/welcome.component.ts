@@ -16,8 +16,7 @@ export class WelcomeComponent implements OnInit {
   selectedDay : Date;
 
   constructor(public af: AngularFire, private router: Router, public loginService: LoginService) {
-    //this.items = af.database.list('fire/hun');
-    this.selectedDay = new Date("2016-07-13");
+    this.selectedDay = new Date();
   }
 
   ngOnInit() {
@@ -27,7 +26,9 @@ export class WelcomeComponent implements OnInit {
 
 
   goDate() {this.router.navigate(['/rides', this.selectedDay]);
+  }
 
+  goRides(key) {this.router.navigate(['/rides', key]);
   }
 
     /**
