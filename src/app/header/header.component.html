@@ -1,0 +1,95 @@
+<div class="navbar navbar-default navbar-fixed-top">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" [routerLink]="['/']">BonCar</a>
+    </div>
+
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Menu <span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <li><a [routerLink]="['/']"><i class="fa fa-home fa-fw" aria-hidden="true"></i>&nbsp;Home</a></li>
+            <li><a [routerLink]="['/car']"><i class="fa fa-car fa-fw" aria-hidden="true"></i>&nbsp;Car - work in progress</a></li>
+            <li class="divider"></li>
+            <li><a href="https://github.com/istibekesi/boncar"><i class="fa fa-github fa-fw" aria-hidden="true"></i>&nbsp;Project on GitHub</a></li>
+
+
+          </ul>
+        </li>
+
+        <li><a [routerLink]="['/ride/2016-07-13/-KM56ek3MIRW6E8SulDL']">test ride</a></li>
+
+      </ul>
+
+
+
+      <ul class="nav navbar-nav navbar-right">
+
+        <!-- Not logged in! -->
+        <li *ngIf="!loginService.userAuth" class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Login<span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <li><a [routerLink]="['/login']" ><i class="fa fa-envelope fa-fw" aria-hidden="true"></i>&nbsp;Email</a></li>
+            <li><a role="button" (click)="loginFacebook()"><i class="fa fa-facebook-official fa-fw" aria-hidden="true"></i>&nbsp;Facebook</a></li>
+            <li><a role="button" (click)="loginAnonymous()"><i class="fa fa-user-secret fa-fw" aria-hidden="true"></i>&nbsp;Anonymous</a></li>
+          </ul>
+        </li>
+
+        <!-- Anonymous user logged in-->
+        <li *ngIf="loginService.userAuth && loginService.userAuth.anonymous" class="dropdown">
+          <a role="button" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+            <i class="fa fa-user-secret"></i>
+          </a>
+          <!--
+          <a href="#" class="dropdown-toggle profile-image" data-toggle="dropdown" role="button" aria-expanded="false">
+            <img height="36" width="36" src="/static/user-avatar/i-user-secret-200.PNG" class="img-circle special-img">
+          </a>
+          -->
+          <ul class="dropdown-menu" role="menu">
+            <li><a [routerLink]="['/user', loginService.userAuth.uid]"><i class="fa fa-user fa-fw" aria-hidden="true"></i>&nbsp;Profile</a></li>
+            <li class="divider"></li>
+            <li><a role="button" (click)="logoutAnonymous()"><i class="fa fa-sign-out fa-fw" aria-hidden="true"></i>&nbsp;Logout</a></li>
+          </ul>
+        </li>
+
+        <!-- Facebook user logged in-->
+        <li *ngIf="loginService.userAuth && loginService.userAuth.provider == 2" class="dropdown">
+          <a href="#" class="dropdown-toggle profile-image" data-toggle="dropdown" role="button" aria-expanded="false">
+            <img height="36" width="36" [src]="loginService.userAuth.auth?.photoURL" class="img-circle special-img"><!--<b class="caret"></b>--></a>
+          <ul class="dropdown-menu" role="menu">
+            <li><a [routerLink]="['/user']"><i class="fa fa-user fa-fw" aria-hidden="true"></i>&nbsp;Profile</a></li>
+            <li class="divider"></li>
+            <li><a role="button" (click)="logoutFacebook()"><i class="fa fa-sign-out fa-fw" aria-hidden="true"></i>&nbsp;Logout</a></li>
+          </ul>
+        </li>
+
+
+        <!-- Email user logged in-->
+        <li *ngIf="loginService.userAuth && loginService.userAuth.provider == 4" class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+            <i class="fa fa-user"></i>
+          </a>
+          <!--<a href="#" class="dropdown-toggle profile-image" data-toggle="dropdown" role="button" aria-expanded="false">
+            <img height="36" width="36" src="/static/user-avatar/i-user-200.PNG" class="img-circle special-img">
+          </a>-->
+          <ul class="dropdown-menu" role="menu">
+            <li><a [routerLink]="['/user']"><i class="fa fa-user fa-fw" aria-hidden="true"></i>&nbsp;Profile</a></li>
+            <li class="divider"></li>
+            <li><a role="button" (click)="logoutEmail()"><i class="fa fa-sign-out fa-fw" aria-hidden="true"></i>&nbsp;Logout</a></li>
+          </ul>
+        </li>
+
+
+
+      </ul>
+    </div>
+
+  </div>
+</div>
