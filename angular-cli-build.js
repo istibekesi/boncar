@@ -21,7 +21,8 @@ module.exports = function(defaults) {
       'bootstrap/dist/js/bootstrap.min.js',
       'bootswatch/*',
       'fontawesome/*',
-      'ng2-datetime/**/*.+(js|js.map)'
+      'underscore/underscore.js'
+      //'ng2-datetime/**/*.+(js|js.map)'
     ]
   });
 };

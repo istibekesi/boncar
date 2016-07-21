@@ -1,3 +1,6 @@
+/// <reference path="../../typings/globals/underscore/index.d.ts" />
+import * as _ from 'underscore';
+
 import { Injectable } from '@angular/core';
 import { UserDetail } from "./user-profile/model/user-detail";
 import { Subject }    from 'rxjs/Subject';

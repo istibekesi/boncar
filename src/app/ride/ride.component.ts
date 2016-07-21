@@ -19,7 +19,7 @@ import 'rxjs/add/operator/map';
       </div>
 
       <div class="col-sm-8">
-        <h2>Ride on {{day}}</h2>
+        <h3>Ride on {{day}}</h3>
 
 
         <br/>
@@ -97,7 +97,7 @@ export class RideComponent implements OnInit {
       this.rideObs = this.af.database.object('rides/' + this.day + '/' + this.rideId );
 
 
-      // this is how MAP add a property to a LIST object observer
+      // this is how MAP add a property to an OBJECT observer
       //this.chatEntryObs = this.af.database.object('rides/' + this.day + '/' + this.rideId + '/chat/-KN2a5mMcGnSXFO8IsXd') // returns an object
       //  .map( entry => {
       //    entry.newsht = "XXX";
