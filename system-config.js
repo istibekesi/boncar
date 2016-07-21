@@ -7,13 +7,17 @@
 /** Map relative paths to URLs. */
 var map = {
     'firebase': 'vendor/firebase/firebase.js',
-    'angularfire2': 'vendor/angularfire2'
+    'angularfire2': 'vendor/angularfire2',
+    'underscore': 'vendor/underscore/underscore.js'
 };
 /** User packages configuration. */
 var packages = {
     angularfire2: {
         defaultExtension: 'js',
         main: 'angularfire2.js'
+    },
+    'underscore': {
+        format: 'cjs'
     }
 };
 ////////////////////////////////////////////////////////////////////////////////////////////////
