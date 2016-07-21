@@ -48,18 +48,20 @@ import { DatePipe } from '@angular/common';
           <h3>Today</h3>
           <hr/>
           <h3><small>No rides</small></h3>
-          {{ dayRideList | json}}
+          {{getRidesToday() | json}}
         </div>
         <div>
           <button type="button" class="btn btn-success btn-sm pull-right" (click)="addRide('tomorrow')"><i class="fa fa-car"></i></button>
           <h3>Tomorrow</h3>
           <hr/>
           <h3><small>No rides</small></h3>
+          {{getRidesTomorrow() | json}}
         </div>
           <button type="button" class="btn btn-success btn-sm pull-right" (click)="addRide('upcoming')"><i class="fa fa-car"></i></button>
           <h3>Upcoming</h3>
           <hr/>
           <h3><small>No rides</small></h3>
+          {{getRidesUpcoming() | json}}
         <div>
         
         </div>
@@ -78,11 +80,13 @@ export class RideListComponent implements OnInit {
   dayRideListObs : any;
   dayRideList;
 
+  flatDayRides : Array<[string, string, number, number, number, number]> = [];
+
+
   constructor(private route: ActivatedRoute, private router: Router, public af: AngularFire, public loginService: LoginService, private datePipe: DatePipe) {
   }
 
   ngOnInit() {
-
 
     this.route.params.subscribe(params => {
       let daySelector = params['day'];
@@ -91,16 +95,13 @@ export class RideListComponent implements OnInit {
         this.dayRideListObs = this.af.database.list('rides');
 
         this.dayRideListObs.subscribe( dayRideList => {
+
+          // Todo : somehow limit this query...
           this.dayRideList = dayRideList;
+          this.flattenDayRides();
         });
 
-        console.log('**** 3 ? ' + _.size({one: 1, two: 2, three: 3}) );
-
-      } else {
-        // should not be used
-        this.selectedDate = params['day'];
-        this.rides = this.af.database.list('rides/'+this.selectedDate);
-      }
+      } 
 
     });
   }
@@ -127,8 +128,57 @@ export class RideListComponent implements OnInit {
     );
     let listRides = this.af.database.list('rides/'+this.datePipe.transform(targetDay, 'yyyy-MM-dd'));
     listRides.push(ride);
+  }
 
 
+  /**
+   * Processes the day-ride list and creates a flat datamodel
+   */
+  flattenDayRides() {
+
+    console.log("Lets flatten day rides...");
+
+    this.flatDayRides = [];
+    _.each(this.dayRideList, dayRide => {
+
+      let day : string = dayRide['$key'];
+      let keysOfDayRide = _.keys(dayRide);
+
+      _.each(keysOfDayRide, k => {
+        if( k && k != '$key') {
+          this.flatDayRides.push([day, k, 8, 0, 17, 0]);
+        }
+      });
+
+      } 
+    );
+
+    console.log("Flatten done... number of rides: " + this.flatDayRides.length);
+
+  }
+
+  // todo : learn and implement a custom PIPE instead of such an ugly getters!!!
+  getRidesToday() : any  {
+    let today : Date = new Date();
+    return _.filter(this.flatDayRides, r => {
+      return this.datePipe.transform(today, 'yyyy-MM-dd') == r[0];
+    } );
+  }
+
+  getRidesTomorrow() : any  {
+    let today : Date = new Date();
+    let tomorrow : Date = new Date(); tomorrow.setDate(tomorrow.getDate() + 1);
+    return _.filter(this.flatDayRides, r => {
+      return this.datePipe.transform(tomorrow, 'yyyy-MM-dd') == r[0];
+    } );
+  }
+
+  getRidesUpcoming() : any {
+    let today : Date = new Date();
+    let tomorrow : Date = new Date(); tomorrow.setDate(tomorrow.getDate() + 1);
+    return _.filter(this.flatDayRides, r => {
+      return this.datePipe.transform(today, 'yyyy-MM-dd') != r[0] && this.datePipe.transform(tomorrow, 'yyyy-MM-dd') != r[0];
+    } );
   }
 
 }
