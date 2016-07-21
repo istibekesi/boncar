@@ -97,7 +97,7 @@ export class RideComponent implements OnInit {
       this.rideObs = this.af.database.object('rides/' + this.day + '/' + this.rideId );
 
 
-      // this is how MAP add a property to a LIST object observer
+      // this is how MAP add a property to an OBJECT observer
       //this.chatEntryObs = this.af.database.object('rides/' + this.day + '/' + this.rideId + '/chat/-KN2a5mMcGnSXFO8IsXd') // returns an object
       //  .map( entry => {
       //    entry.newsht = "XXX";

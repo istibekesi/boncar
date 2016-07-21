@@ -43,6 +43,7 @@ import { DatePipe } from '@angular/common';
           <h3>Today</h3>
           <hr/>
           <h3><small>No rides</small></h3>
+          {{ dayRideList | json}}
         </div>
         <div>
           <button type="button" class="btn btn-success btn-sm pull-right" (click)="addRide('tomorrow')"><i class="fa fa-car"></i></button>
@@ -69,6 +70,9 @@ export class RideListComponent implements OnInit {
   selectedDate : Date;
   rides : any;
 
+  dayRideListObs : any;
+  dayRideList;
+
   constructor(private route: ActivatedRoute, private router: Router, public af: AngularFire, public loginService: LoginService, private datePipe: DatePipe) {
   }
 
@@ -76,8 +80,25 @@ export class RideListComponent implements OnInit {
     this.route.params.subscribe(params => {
       let daySelector = params['day'];
       if (daySelector == 'today' || daySelector == 'tomorrow' || daySelector == 'upcoming' ) {
+
+        this.dayRideListObs = this.af.database.list('rides');
+          //.map( dayObjects => {
+          //  return dayObjects.map( dayObject => {
+          //    //dayObject.newShit = "xxx";
+          //    return dayObject;
+          //    }
+          //  );
+          //});
+
+
+
+        this.dayRideListObs.subscribe( dayRideList => {
+          this.dayRideList = dayRideList;
+        });
+        //
         //
       } else {
+        // should not be used
         this.selectedDate = params['day'];
         this.rides = this.af.database.list('rides/'+this.selectedDate);
       }
