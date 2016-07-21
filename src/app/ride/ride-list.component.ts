@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ROUTER_DIRECTIVES, Router, ActivatedRoute } from "@angular/router";
 import { AngularFire, FirebaseListObservable } from 'angularfire2';
+import { Ride } from '../ride/model/ride';
+import { LoginService} from '../login.service' ;
+import { DatePipe } from '@angular/common';
 
 @Component({
   moduleId: module.id,
@@ -13,9 +16,6 @@ import { AngularFire, FirebaseListObservable } from 'angularfire2';
       <small *ngIf="!selectedDate">unpcoming</small>
       </h1>
       <br/>
-
-      
-      
       
       <!-- should not be shown, instead upcoming should be used -->
       <table class="table table-striped table-hover " *ngIf="selectedDate">
@@ -37,16 +37,39 @@ import { AngularFire, FirebaseListObservable } from 'angularfire2';
         </tbody>
       </table>
       
+      <div *ngIf="!selectedDate">
+        <div>
+          <button type="button" class="btn btn-success btn-sm pull-right" (click)="addRide('today')"><i class="fa fa-car"></i></button>
+          <h3>Today</h3>
+          <hr/>
+          <h3><small>No rides</small></h3>
+        </div>
+        <div>
+          <button type="button" class="btn btn-success btn-sm pull-right" (click)="addRide('tomorrow')"><i class="fa fa-car"></i></button>
+          <h3>Tomorrow</h3>
+          <hr/>
+          <h3><small>No rides</small></h3>
+        </div>
+          <button type="button" class="btn btn-success btn-sm pull-right" (click)="addRide('upcoming')"><i class="fa fa-car"></i></button>
+          <h3>Upcoming</h3>
+          <hr/>
+          <h3><small>No rides</small></h3>
+        <div>
+        
+        </div>
+      </div>
+      
     </div>
   `,
-  directives: [ ROUTER_DIRECTIVES ]
+  directives: [ ROUTER_DIRECTIVES ],
+  providers: [DatePipe]
 })
 export class RideListComponent implements OnInit {
 
   selectedDate : Date;
   rides : any;
 
-  constructor(private route: ActivatedRoute, private router: Router, public af: AngularFire) {
+  constructor(private route: ActivatedRoute, private router: Router, public af: AngularFire, public loginService: LoginService, private datePipe: DatePipe) {
   }
 
   ngOnInit() {
@@ -64,6 +87,28 @@ export class RideListComponent implements OnInit {
 
   goRide(rideId : string) {
     this.router.navigate(['/ride', this.selectedDate, rideId]);
+  }
+
+  addRide(key : string) {
+
+    let today : Date = new Date();
+    let tomorrow : Date = new Date(); tomorrow.setDate(tomorrow.getDate() + 1);
+    let tomorrow2 : Date = new Date(); tomorrow2.setDate(tomorrow2.getDate() + 2);
+
+    let targetDay : Date = today;
+    if (key == 'tomorrow') targetDay = tomorrow;
+    if (key == 'upcoming') targetDay = tomorrow2;
+
+    let ride = new Ride(
+      this.loginService.userAuth.uid,
+      targetDay,
+      [[1, this.loginService.userAuth.uid]],
+      [[1, this.loginService.userAuth.uid, 'AutoMessage: Let me offered my ride!' ]]
+    );
+    let listRides = this.af.database.list('rides/'+this.datePipe.transform(targetDay, 'yyyy-MM-dd'));
+    listRides.push(ride);
+
+
   }
 
 }

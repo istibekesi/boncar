@@ -5,4 +5,9 @@ export interface iRide {
   passengers: Array<[number, string]>;    // iPassenger? Use "tuple" for now
   chat: Array<[number, string, string]>;  // iChat? use "tuple" for now
 
+  toHour: number;
+  toMin: number;
+  backHour: number;
+  backMin: number;
+
 }

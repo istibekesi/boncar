@@ -19,7 +19,7 @@ import 'rxjs/add/operator/map';
       </div>
 
       <div class="col-sm-8">
-        <h2>Ride on {{day}}</h2>
+        <h3>Ride on {{day}}</h3>
 
 
         <br/>
