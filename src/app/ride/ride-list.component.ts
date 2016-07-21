@@ -13,62 +13,7 @@ import { DatePipe } from '@angular/common';
 @Component({
   moduleId: module.id,
   selector: 'boncar-ride-list',
-  template: `
-    <div>
-      <h1>
-      Rides
-      <small *ngIf="selectedDate">{{selectedDate | date:"yy-MM-dd"}}</small>
-      <small *ngIf="!selectedDate">unpcoming</small>
-      </h1>
-      <br/>
-      
-      <!-- should not be shown, instead upcoming should be used -->
-      <table class="table table-striped table-hover " *ngIf="selectedDate">
-        <thead>
-          <tr>
-            <th>#</th>
-            <th>uid</th>
-            <th>Driver</th>
-            <th>Go</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let ride of rides | async">
-            <td>#</td>
-            <td>{{ride?.$key}}</td>
-            <td>{{ride?.fkOwnerUserUid}}</td>
-            <td><a (click)="goRide(ride.$key)" class="btn btn-info btn-sm">Go</a></td>
-          </tr>
-        </tbody>
-      </table>
-      
-      <div *ngIf="!selectedDate">
-        <div>
-          <button type="button" class="btn btn-success btn-sm pull-right" (click)="addRide('today')"><i class="fa fa-car"></i></button>
-          <h3>Today</h3>
-          <hr/>
-          <h3><small>No rides</small></h3>
-          {{getRidesToday() | json}}
-        </div>
-        <div>
-          <button type="button" class="btn btn-success btn-sm pull-right" (click)="addRide('tomorrow')"><i class="fa fa-car"></i></button>
-          <h3>Tomorrow</h3>
-          <hr/>
-          <h3><small>No rides</small></h3>
-          {{getRidesTomorrow() | json}}
-        </div>
-          <button type="button" class="btn btn-success btn-sm pull-right" (click)="addRide('upcoming')"><i class="fa fa-car"></i></button>
-          <h3>Upcoming</h3>
-          <hr/>
-          <h3><small>No rides</small></h3>
-          {{getRidesUpcoming() | json}}
-        <div>
-        
-        </div>
-      </div>
-      
-    </div>
-  `,
+  templateUrl: 'ride-list.component.html',
   directives: [ ROUTER_DIRECTIVES ],
   providers: [DatePipe]
 })
@@ -124,7 +69,14 @@ export class RideListComponent implements OnInit {
       this.loginService.userAuth.uid,
       targetDay,
       [[1, this.loginService.userAuth.uid]],
-      [[1, this.loginService.userAuth.uid, 'AutoMessage: Let me offered my ride!' ]]
+      //[[0, this.loginService.userAuth.uid, 'AutoMessage: Let me offered my ride!' ]]
+      { '-0' : 
+        {
+          'id' : 0, 
+          'userId' : this.loginService.userAuth.uid, 
+          'msg' : 'AutoMessage: Let me offered my ride!'
+        }
+      }
     );
     let listRides = this.af.database.list('rides/'+this.datePipe.transform(targetDay, 'yyyy-MM-dd'));
     listRides.push(ride);
@@ -146,7 +98,7 @@ export class RideListComponent implements OnInit {
 
       _.each(keysOfDayRide, k => {
         if( k && k != '$key') {
-          this.flatDayRides.push([day, k, 8, 0, 17, 0]);
+          this.flatDayRides.push([day, k, dayRide[k].toHour, dayRide[k].toMin, dayRide[k].backHour, dayRide[k].backMin]);
         }
       });
 
