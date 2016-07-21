@@ -1,9 +1,14 @@
+/// <reference path="../../../typings/globals/underscore/index.d.ts" />
+import * as _ from 'underscore';
+
 import { Component, OnInit } from '@angular/core';
 import { ROUTER_DIRECTIVES, Router, ActivatedRoute } from "@angular/router";
 import { AngularFire, FirebaseListObservable } from 'angularfire2';
 import { Ride } from '../ride/model/ride';
 import { LoginService} from '../login.service' ;
 import { DatePipe } from '@angular/common';
+
+
 
 @Component({
   moduleId: module.id,
@@ -77,26 +82,20 @@ export class RideListComponent implements OnInit {
   }
 
   ngOnInit() {
+
+
     this.route.params.subscribe(params => {
       let daySelector = params['day'];
       if (daySelector == 'today' || daySelector == 'tomorrow' || daySelector == 'upcoming' ) {
 
         this.dayRideListObs = this.af.database.list('rides');
-          //.map( dayObjects => {
-          //  return dayObjects.map( dayObject => {
-          //    //dayObject.newShit = "xxx";
-          //    return dayObject;
-          //    }
-          //  );
-          //});
-
-
 
         this.dayRideListObs.subscribe( dayRideList => {
           this.dayRideList = dayRideList;
         });
-        //
-        //
+
+        console.log('**** 3 ? ' + _.size({one: 1, two: 2, three: 3}) );
+
       } else {
         // should not be used
         this.selectedDate = params['day'];
