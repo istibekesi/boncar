@@ -43,7 +43,11 @@ export class LoginService {
               this.setUserDetail(new UserDetail("","","anonymous"));
             }
             console.log("Dont exist? Let's save it than!")
-            this.initAvatar();
+
+            if (this.userAuth.provider != 2) {
+              this.initAvatar();
+            }
+
             this.updateUserDetails();
 
           } else {
