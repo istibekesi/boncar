@@ -15,7 +15,7 @@ import 'rxjs/add/operator/map';
 
     <div class="row">
       <div class="col-sm-4">
-        <boncar-car></boncar-car>
+        <boncar-car [passengers]="ride?.passengers"></boncar-car>
       </div>
 
       <div class="col-sm-8">
@@ -24,14 +24,7 @@ import 'rxjs/add/operator/map';
 
         <br/>
 
-        <!--
-        <ul class="list-group">
-          <li *ngFor="let chatEntry of chatEntries" class="list-group-item">
-            <img class="img-circle pull-right" [src]="chatEntry.newsht?.avatarUrl" heigth="36" width="36">
-            {{chatEntry.msg}}
-          </li>
-        </ul>
-        -->
+        {{ride | json}}
 
 
         <h3>Messages</h3>
@@ -58,12 +51,6 @@ import 'rxjs/add/operator/map';
 
         </div>
 
-
-        <!--
-        Chat:<br/>
-        {{chatEntries | json}}
-        -->
-
       </div>
 
     </div>
@@ -76,8 +63,8 @@ export class RideComponent implements OnInit {
   rideObs : Observable<any>;
   day : Date;
 
-  //rideChat : Array<[number, string, string, string, string]>;
-  rideChat : Array<any>;
+  ride;
+
   msg : string;
 
   // singel object
@@ -95,6 +82,9 @@ export class RideComponent implements OnInit {
       this.day = params['day'];
       this.rideId = params['rideid'];
       this.rideObs = this.af.database.object('rides/' + this.day + '/' + this.rideId );
+      
+
+
 
 
       // this is how MAP add a property to an OBJECT observer
@@ -125,7 +115,7 @@ export class RideComponent implements OnInit {
     });
 
     this.rideObs.subscribe( ride => {
-      this.rideChat = ride.chat;
+      this.ride = ride;
     });
 
   }

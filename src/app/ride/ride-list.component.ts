@@ -65,10 +65,13 @@ export class RideListComponent implements OnInit {
     if (key == 'tomorrow') targetDay = tomorrow;
     if (key == 'upcoming') targetDay = tomorrow2;
 
+    // TODO: makes troubel if user is not logged in!
+
     let ride = new Ride(
       this.loginService.userAuth.uid,
       targetDay,
-      [[1, this.loginService.userAuth.uid]],
+      [[0, this.loginService.userAuth.uid, this.loginService.userDetail.avatarUrl],
+      [1, "", ""], [2, "", ""], [3, "", ""], [4, "", ""]],
       //[[0, this.loginService.userAuth.uid, 'AutoMessage: Let me offered my ride!' ]]
       { '-0' : 
         {

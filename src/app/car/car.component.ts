@@ -1,46 +1,11 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, OnChanges, Input} from '@angular/core';
 import {SeatComponent} from './seat.component';
 
 @Component({
+  moduleId: module.id,
   selector: 'boncar-car',
   providers: [],
-  template: `
-    <div>
-    <div class="well clearfix">
-
-      <div class="btn-group">
-        <button (click)="removeSeat()" type="button" class="btn btn-success btn-xs"><i class="fa fa-minus" aria-hidden="true"></i>
-</button>
-        <button (click)="addSeat()" type="button" class="btn btn-success btn-xs"><i class="fa fa-plus" aria-hidden="true"></i>
-</button>
-      </div>
-
-      <br/><br/>
-
-      <div style="height:500px;border-style:solid;border-width:0px;">
-
-        <svg version="1.1"
-            xmlns="http://www.w3.org/2000/svg"
-            xmlns:xlink="http://www.w3.org/1999/xlink"
-            id="svg1" height="100%" width="100%" [attr.viewBox]="viewBox(200)" preserveAspectRatio="xMidYMin">
-          <g>
-            <defs>
-            </defs>
-
-            <rect x="2" y="2" rx="3" ry="3" width="96" [attr.height]="yHeigth(196)" class="car-rect"></rect>
-            <rect x="4" y="44" rx="3" ry="3" width="92" [attr.height]="yHeigth(110)" fill="white"></rect>
-
-            <g boncar-seat *ngFor="let s of seats; let i = index"
-              [attrX]="seatX(i)" [attrY]="seatY(i)" [svgId]="'svg-id-'+i"></g>
-
-
-          </g>
-        </svg>
-
-    </div>
-  </div>
-  </div>
-  `,
+  templateUrl: 'car.component.html',
   styles : [`
     .car-rect {
       fill: #2c3e50;
@@ -48,21 +13,42 @@ import {SeatComponent} from './seat.component';
   `],
   directives: [SeatComponent]
 })
-export class CarComponent implements OnInit {
+export class CarComponent implements OnChanges {
 
-  seats : Array<number>;
+  @Input() passengers : Array<any>;
+  internalPassengers;
 
   constructor() {
+
   }
 
+/*
   ngOnInit() {
-    this.seats = [0, 1, 2, 4, 5];
+    console.log("NgInit of CAR Component!")
+    this.internalPassengers = [
+      [0, "", ""],
+      [1, "", ""],
+      [2, "", ""],
+      [3, "", ""],
+      [4, "", ""]
+    ];
+  }
+*/
+
+  ngOnChanges(changes:any):void {
+    console.log("NgOnChanges of CAR Component!")
+    console.log(changes.passengers.currentValue);
+    if (changes.passengers.currentValue) {
+      this.internalPassengers = changes.passengers.currentValue;
+    } else {
+      this.internalPassengers = [[0,"",""]];
+    }
   }
 
   rows() {
-    if (this.seats.length < 3) return 1;
-    if (this.seats.length < 6) return 2;
-    let extraSeats = (this.seats.length - 5);
+    if (this.internalPassengers.length < 3) return 1;
+    if (this.internalPassengers.length < 6) return 2;
+    let extraSeats = (this.internalPassengers.length - 5);
     return 2 + (1 + Math.floor((extraSeats - 1) / 2));
   }
 
@@ -91,11 +77,11 @@ export class CarComponent implements OnInit {
   }
 
   addSeat() {
-    this.seats.push(this.seats.length + 1);
+    this.internalPassengers.push([this.internalPassengers.length, "", ""]);
   }
 
   removeSeat() {
-    this.seats.pop();
+    this.internalPassengers.pop();
   }
 
 }

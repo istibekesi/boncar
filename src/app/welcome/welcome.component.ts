@@ -31,6 +31,10 @@ export class WelcomeComponent implements OnInit {
   goRides(key) {this.router.navigate(['/rides', key]);
   }
 
+  goMyRide() {
+    this.router.navigate(['/ride/2016-07-30/-KNlHdfaME-62xXmUAwO']);
+  }
+
     /**
      * Pushes a test ride object for the selected day
      */
