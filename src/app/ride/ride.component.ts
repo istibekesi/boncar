@@ -24,8 +24,7 @@ import 'rxjs/add/operator/map';
 
         <br/>
 
-        {{ride | json}}
-
+        <!-- {{ride | json}} -->
 
         <h3>Messages</h3>
         <hr/>
