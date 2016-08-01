@@ -1,4 +1,4 @@
-import {Component, OnInit, OnChanges, Input} from '@angular/core';
+import {Component, OnInit, OnChanges, Input, Output, EventEmitter} from '@angular/core';
 import {SeatComponent} from './seat.component';
 
 @Component({
@@ -18,9 +18,12 @@ export class CarComponent implements OnChanges {
   @Input() passengers : Array<any>;
   internalPassengers;
 
-  constructor() {
+  @Output() bookSeatRequest = new EventEmitter();
 
+  constructor() {
   }
+
+
 
 /*
   ngOnInit() {
@@ -44,6 +47,13 @@ export class CarComponent implements OnChanges {
       this.internalPassengers = [[0,"",""]];
     }
   }
+
+  
+  carSeatBookRequest(event) {
+    console.log("CAAR EMIT:" + event.value);
+    this.bookSeatRequest.emit(event);
+  }
+
 
   rows() {
     if (this.internalPassengers.length < 3) return 1;

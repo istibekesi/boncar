@@ -27,8 +27,8 @@
             <!--<g boncar-seat *ngFor="let s of seats; let i = index"
                 [attrX]="seatX(i)" [attrY]="seatY(i)" [svgId]="'svg-id-'+i"></g> -->
 
-            <g boncar-seat *ngFor="let p of internalPassengers; let i = index"
-                [attrX]="seatX(i)" [attrY]="seatY(i)" [svgId]="'svg-id-'+i" [avatarSrc]="p[2]" [position]="i+1"></g>
+            <g boncar-seat *ngFor="let p of internalPassengers; let i = index" (bookSeatRequest)="carSeatBookRequest($event);"
+                [attrX]="seatX(i)" [attrY]="seatY(i)" [svgId]="'svg-id-'+i" [avatarSrc]="p[2]" [position]="i"></g>
 
 
             </g>

@@ -1,4 +1,4 @@
-import {Component, OnInit, OnChanges, Input} from '@angular/core';
+import {Component, OnInit, OnChanges, Input, Output, EventEmitter} from '@angular/core';
 import {CarService} from './car.service';
 import {NgClass} from '@angular/common';
 
@@ -84,6 +84,8 @@ export class SeatComponent implements OnInit, OnChanges {
   @Input() avatarSrc : string;
   internalAvatarSrc: string;
 
+  @Output() bookSeatRequest = new EventEmitter();
+
   constructor(private carService:CarService) {
     //let avatar = this.carService.getRandomInstaAvatar();
     //this.avatarSrc = avatar.src;
@@ -106,9 +108,13 @@ export class SeatComponent implements OnInit, OnChanges {
 
   bookTheSeat() {
     if (this.internalAvatarSrc) {
-      console.log("Unable to book this seat, reserved already!");  
+      console.log("Unable to book this seat, reserved already!");
+      return;
     }
-    console.log("Book this seet:" + this.position);
+    console.log("SEAT EMIT:" + this.position);
+    this.bookSeatRequest.emit({
+      value: this.position
+    });
   }
 
 }

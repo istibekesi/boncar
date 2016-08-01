@@ -15,7 +15,7 @@ import 'rxjs/add/operator/map';
 
     <div class="row">
       <div class="col-sm-4">
-        <boncar-car [passengers]="ride?.passengers"></boncar-car>
+        <boncar-car [passengers]="ride?.passengers" (bookSeatRequest)="rideSeatBookRequest($event);"></boncar-car>
       </div>
 
       <div class="col-sm-8">
@@ -25,6 +25,15 @@ import 'rxjs/add/operator/map';
         <br/>
 
         <!-- {{ride | json}} -->
+
+        <div style="margin:0 15px">
+          <i class="fa fa-external-link-square fa-rotate-90"></i>&nbsp;
+            <span *ngIf="ride?.toHour<10">0</span>{{ride?.toHour}}:<span *ngIf="ride?.toMin<10">0</span>{{ride?.toMin}}
+            &nbsp;&nbsp;
+          <i class="fa fa-external-link-square"></i>&nbsp;
+            <span *ngIf="ride?.backHour<10">0</span>{{ride?.backHour}}:<span *ngIf="ride?.backMin<10">0</span>{{ride?.backMin}}
+        </div>
+
 
         <h3>Messages</h3>
         <hr/>
@@ -132,6 +141,23 @@ export class RideComponent implements OnInit {
     chat.push(chatEntry);
 
     this.msg = '';
+
+  }
+
+  rideSeatBookRequest(event) {
+    console.log("RIDE EMIT:" + event.value);
+
+    console.log("Book reservation for :" + this.loginService.userAuth.uid);
+    // postBooking
+
+    let passenger = this.af.database.object('rides/' + this.day + '/' + this.rideId + '/passengers/' + event.value);
+    passenger.set(
+      {
+        0: event.value,
+        1: this.loginService.userAuth.uid,
+        2: this.loginService.userDetail.avatarUrl
+      }
+    );
 
   }
 
