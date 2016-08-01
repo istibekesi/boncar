@@ -9,7 +9,7 @@ export class Ride implements iRide {
 
   constructor (public fkOwnerUserUid : string,
                public date : Date,
-               public passengers : Array<[number, string]>,
+               public passengers : Array<[number, string, string]>,
                public chat : any) {
   }
 }

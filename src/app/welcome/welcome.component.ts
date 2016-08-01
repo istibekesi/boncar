@@ -42,7 +42,7 @@ export class WelcomeComponent implements OnInit {
     let ride = new Ride(
       "driver",
       this.selectedDay,
-      [[1, "utas1"],[2, "utas2"]],
+      [[1, "utas1", ""],[2, "utas2", ""]],
       [[1, "utas1", "Hello"],[2, "utas2", "Bello"]]
     );
     let listRides = this.af.database.list('rides/'+this.selectedDay);
