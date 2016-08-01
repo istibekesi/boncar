@@ -40,18 +40,18 @@
             
             
             <div class="row" *ngFor="let ride of getRidesToday()" style="margin:5px;">
-                <div class="col-sm-1"></div>
-                <div class="col-sm-4">
+                <div class="col-xs-1"></div>
+                <div class="col-xs-4">
                     <i class="fa fa-calendar"></i>&nbsp;&nbsp;{{ride[0]}}
                 </div>
-                <div class="col-sm-4">
+                <div class="col-xs-4">
                         <i class="fa fa-external-link-square fa-rotate-90"></i>&nbsp;
                         <span *ngIf="ride[2]<10">0</span>{{ride[2]}}:<span *ngIf="ride[3]<10">0</span>{{ride[3]}}
                         &nbsp;&nbsp;
                         <i class="fa fa-external-link-square"></i>&nbsp;
                         <span *ngIf="ride[4]<10">0</span>{{ride[4]}}:<span *ngIf="ride[5]<10">0</span>{{ride[5]}}
                 </div>
-                <div class="col-sm-3">
+                <div class="col-xs-3">
                     <a [routerLink]="['/ride', ride[0], ride[1] ]"><i class="fa fa-car"></i>&nbsp;</a>
                 </div>
             </div>
@@ -65,18 +65,18 @@
             <h3 *ngIf="!getRidesTomorrow() || getRidesTomorrow().length == 0"><small>No rides</small></h3>
             
             <div class="row" *ngFor="let ride of getRidesTomorrow()" style="margin:5px;">
-                <div class="col-sm-1"></div>
-                <div class="col-sm-4">
+                <div class="col-xs-1"></div>
+                <div class="col-xs-4">
                     <i class="fa fa-calendar"></i>&nbsp;&nbsp;{{ride[0]}}
                 </div>
-                <div class="col-sm-4">
+                <div class="col-xs-4">
                         <i class="fa fa-external-link-square fa-rotate-90"></i>&nbsp;
                         <span *ngIf="ride[2]<10">0</span>{{ride[2]}}:<span *ngIf="ride[3]<10">0</span>{{ride[3]}}
                         &nbsp;&nbsp;
                         <i class="fa fa-external-link-square"></i>&nbsp;
                         <span *ngIf="ride[4]<10">0</span>{{ride[4]}}:<span *ngIf="ride[5]<10">0</span>{{ride[5]}}
                 </div>
-                <div class="col-sm-3">
+                <div class="col-xs-3">
                     <a [routerLink]="['/ride', ride[0], ride[1] ]"><i class="fa fa-car"></i>&nbsp;</a>
                 </div>
             </div>
@@ -90,18 +90,18 @@
             <h3 *ngIf="!getRidesUpcoming() || getRidesUpcoming().length == 0"><small>No rides</small></h3>
             
             <div class="row" *ngFor="let ride of getRidesUpcoming()" style="margin:5px;">
-                <div class="col-sm-1"></div>
-                <div class="col-sm-4">
+                <div class="col-xs-1"></div>
+                <div class="col-xs-4">
                     <i class="fa fa-calendar"></i>&nbsp;&nbsp;{{ride[0]}}
                 </div>
-                <div class="col-sm-4">
+                <div class="col-xs-4">
                         <i class="fa fa-external-link-square fa-rotate-90"></i>&nbsp;
                         <span *ngIf="ride[2]<10">0</span>{{ride[2]}}:<span *ngIf="ride[3]<10">0</span>{{ride[3]}}
                         &nbsp;&nbsp;
                         <i class="fa fa-external-link-square"></i>&nbsp;
                         <span *ngIf="ride[4]<10">0</span>{{ride[4]}}:<span *ngIf="ride[5]<10">0</span>{{ride[5]}}
                 </div>
-                <div class="col-sm-3">
+                <div class="col-xs-3">
                     <a [routerLink]="['/ride', ride[0], ride[1] ]"><i class="fa fa-car"></i>&nbsp;</a>
                 </div>
             </div>
