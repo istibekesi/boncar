@@ -77,7 +77,7 @@ export class RideListComponent implements OnInit {
         {
           'id' : 0, 
           'userId' : this.loginService.userAuth.uid, 
-          'msg' : 'AutoMessage: Let me offered my ride!'
+          'msg' : 'AutoMessage: Let me offer my ride!'
         }
       }
     );
