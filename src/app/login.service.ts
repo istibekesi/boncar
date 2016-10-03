@@ -53,6 +53,9 @@ export class LoginService {
           } else {
             // object exists
             console.log("User Details retrieved... details already exists!");
+            console.log(userDetail);
+            console.log(authChanged);
+            
             this.setUserDetail(userDetail);   // Wow... we should keep firebase aligned to the iUserDetail interface ;)
           }
         });

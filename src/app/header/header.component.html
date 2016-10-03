@@ -62,7 +62,8 @@
         <!-- Facebook user logged in-->
         <li *ngIf="loginService.userAuth && loginService.userAuth.provider == 2" class="dropdown">
           <a href="#" class="dropdown-toggle profile-image" data-toggle="dropdown" role="button" aria-expanded="false">
-            <img height="36" width="36" [src]="loginService.userAuth.auth?.photoURL" class="img-circle special-img"><!--<b class="caret"></b>--></a>
+            <!-- <img height="36" width="36" [src]="loginService.userAuth.auth?.photoURL" class="img-circle special-img"> -->
+            <img height="36" width="36" [src]="loginService.userDetail.avatarUrl" class="img-circle special-img">
           <ul class="dropdown-menu" role="menu">
             <li><a [routerLink]="['/user']"><i class="fa fa-user fa-fw" aria-hidden="true"></i>&nbsp;Profile</a></li>
             <li class="divider"></li>
